@@ -46,11 +46,35 @@ Prior to the 2020 US Presidential Election, the ANES asked respondents their hig
 
 What was the most common highest level of education obtained by respondents? What was the least common? *Use the `education` variable from the `nes` data set to answer these questions.*
 
+```{r}
+library(polisciols)
+skim(nes$education)
+#or
+tabyl(nes, education)
+```
+
+**Most frequent**: Some post-high school, no bachelor's degree (2790)
+
+**Least frequent**: Less than high school credential (376)
+
+``` {r}
+```
+
 ### Part B
 
 *Points: 2*
 
 Describe the distribution of the total number of respondents that obtained each highest level of education. Include a plot of those counts.
+
+```{r}
+ggplot(nes, aes(y = education)) + 
+  geom_bar() +
+  theme_minimal()
+```
+
+![](http://127.0.0.1:11859/graphics/9644652c-ca42-4e3c-bb52-4ad7dfff2028.png)
+
+Excluding NA, Don't know, and Refused, this is a fairly **normal distribution**.
 
 ## Question 2
 
@@ -62,11 +86,35 @@ The ANES also asked each respondent how often they pay attention to what is goin
 
 How often did individuals pay attention to what was going on in government and politics? What was the most popular level of attention? What was the least? *Use the `attention_to_politics` variable from the `nes` data set to answer these questions.*
 
+skim(nes\$attention_to_politics)
+
+```{r}
+skim(nes$attention_to_politics)
+#or
+tabyl(nes, attention_to_politics)
+```
+
+Around 99% of respondents paid at least *some* attention to politics in 2020.
+
+**Most frequent:** Most of the time (3313)
+
+**Least frequent:** Never (77)
+
 ### Part B
 
 *Points: 3*
 
 Describe the distribution of the total number of respondents who provided each answer to this question. Does this distribution indicate that individuals tend to pay very little, a moderate, or a lot of attention to politics prior to a US Presidential Election? Include a plot of these counts in your answer.
+
+```{r}
+ggplot(nes, aes(x = attention_to_politics)) + 
+  geom_bar() + 
+  theme_minimal()
+```
+
+![](http://127.0.0.1:11859/graphics/9305f245-561d-4aea-92b7-60b146c8579c.png)
+
+This is a **right-skewed distribution**, indicating that most individuals pay a moderate amount of attention to politics, leaning towards a lot.
 
 ## Question 3
 
@@ -87,17 +135,36 @@ iq <- c(
 
 Find the five-number summary, mean, and standard deviation for these data. Do you think any of these students might be outliers in this distribution? If so, what IQ test score did they get and how do you know?
 
+```{r}
+skim(iq)
+```
+
+There are no outliers in this distribution. First, I determined the Interquartile range by subtracting Q1, or p25, from Q3, or p75. Q3 - Q1 = 125 - 104 = 21.
+
+Second, I subtracted and added 1.5IQR from Q1 and Q3 respectively. These determined the lower and upper fences of my dataset. Here is how I calculated both values:\
+Q1 - 1.5IQR = 104 - 31.5 = 72.5 (lower fence)\
+Q3 + 1.5 IQR = 125 + 31.5 = 156.5 (upper fence)
+
+No value is below or above either limitation, meaning there are no outliers in this dataset.
+
 ### Part B
 
 *Points: 3*
 
 In large populations, IQ test scores are standardized to have a mean of 100 and a standard deviation of 15. In what way does the distribution among these students differ from the overall population? Do not use the words and phrases "mean" or "standard deviation" in your answer.
 
+**Answer:** These students do not differ too differently, at least in terms of *spread*, from a standardized large population. However, the average iq for this group of students is 14 points higher than that of a standardized population.
+
 ## Question 4
 
 *Points: 4*
 
 The ANES collects information about each respondent's demographics, including their race, age, household income, and party affiliation. Provide the "type" (categorical or continuous) of variable each of those demographic characteristics represents.
+
+**Race**: Categorical\
+**Age:** Continuous *or* Categorical/Ordinal (if binned)**\
+Household Income:** Continuous *or* Categorical/Ordinal (if binned)**\
+Party affiliation:** Categorical
 
 ## Question 5
 
@@ -109,8 +176,26 @@ The ANES also asked respondents prior to the election to rate Joe Biden and Dona
 
 Plot all respondents' answers to these two questions on a single density plot. There are several peaks in these distributions. What do these peaks have in common? What might they suggest about how people answer questions that ask them to provide a single number along a large range?
 
+```{r}
+ggplot(data = nes, mapping = aes( )) + 
+  geom_density( mapping = aes(x = therm_biden), color = "blue" ) + 
+  geom_density( mapping = aes(x = therm_trump), color = "red") +
+  theme_minimal() +
+  labs(
+    title = "Feeling Thermometer Towards Biden/Trump in 2020",
+    x = "Thermometer Score",
+    y = "Density")
+```
+
+Blue = Therm_Biden\
+Red = Therm_Trump
+
+The peaks for both candidates are highly concentrated at both ends of the spectrum, most markedly so around the 0-15 range. This indicates that attitudes towards candidates are highly polarized and negative. These findings suggest that people will are more likely to choose numbers on the ends of a suggested range.
+
 ### Part B
 
 *Points: 3*
 
 President Biden won this election. Would you predict this outcome from the way this representative sample responded to these questions? Provide a brief description of the reasoning behind your answer.
+
+I would have predicted Biden to win for two reasons. First, it is obvious that negative feelings towards Trump heavily outweighed negative feelings towards Biden. Although Trump performed fairly better than Biden in the 90-100 range, it does not make up for the significant difference in voters entirely opposed to Trump. Secondly, Biden fared better than Trump in terms of density in the 25-90 range, meaning he may have appealled to more voters drawn between the two candidates.
