@@ -10,6 +10,16 @@ execute:
   warning: false
 ---
 
+::: callout-note
+Make sure to render your Quarto document before you submit it. Make sure to address all errors that pop up.
+
+```{r}
+library(skimr)
+library(janitor)
+library(tidyverse)
+```
+:::
+
 Please upload your completed assignment to the ELMs course site (under the assignments menu) and to your class Github repository. You need to upload both your Quarto document (with R code, as needed) and its rendered output (either as a PDF or HTML file).
 
 **Total points: 25**
@@ -44,6 +54,10 @@ Prior to the 2020 US Presidential Election, the ANES asked respondents their hig
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 What was the most common highest level of education obtained by respondents? What was the least common? *Use the `education` variable from the `nes` data set to answer these questions.*
 
 ```{r}
@@ -57,12 +71,16 @@ tabyl(nes, education)
 
 **Least frequent**: Less than high school credential (376)
 
-``` {r}
+```{r}
 ```
 
 ### Part B
 
 *Points: 2*
+
+::: callout-note
+2/2
+:::
 
 Describe the distribution of the total number of respondents that obtained each highest level of education. Include a plot of those counts.
 
@@ -84,6 +102,10 @@ The ANES also asked each respondent how often they pay attention to what is goin
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 How often did individuals pay attention to what was going on in government and politics? What was the most popular level of attention? What was the least? *Use the `attention_to_politics` variable from the `nes` data set to answer these questions.*
 
 skim(nes\$attention_to_politics)
@@ -103,6 +125,10 @@ Around 99% of respondents paid at least *some* attention to politics in 2020.
 ### Part B
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 Describe the distribution of the total number of respondents who provided each answer to this question. Does this distribution indicate that individuals tend to pay very little, a moderate, or a lot of attention to politics prior to a US Presidential Election? Include a plot of these counts in your answer.
 
@@ -133,6 +159,10 @@ iq <- c(
 
 *Points: 3*
 
+::: callout-note
+3/3
+:::
+
 Find the five-number summary, mean, and standard deviation for these data. Do you think any of these students might be outliers in this distribution? If so, what IQ test score did they get and how do you know?
 
 ```{r}
@@ -151,6 +181,10 @@ No value is below or above either limitation, meaning there are no outliers in t
 
 *Points: 3*
 
+::: callout-note
+3/3
+:::
+
 In large populations, IQ test scores are standardized to have a mean of 100 and a standard deviation of 15. In what way does the distribution among these students differ from the overall population? Do not use the words and phrases "mean" or "standard deviation" in your answer.
 
 **Answer:** These students do not differ too differently, at least in terms of *spread*, from a standardized large population. However, the average iq for this group of students is 14 points higher than that of a standardized population.
@@ -158,6 +192,10 @@ In large populations, IQ test scores are standardized to have a mean of 100 and 
 ## Question 4
 
 *Points: 4*
+
+::: callout-note
+4/4
+:::
 
 The ANES collects information about each respondent's demographics, including their race, age, household income, and party affiliation. Provide the "type" (categorical or continuous) of variable each of those demographic characteristics represents.
 
@@ -173,6 +211,10 @@ The ANES also asked respondents prior to the election to rate Joe Biden and Dona
 ### Part A
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 Plot all respondents' answers to these two questions on a single density plot. There are several peaks in these distributions. What do these peaks have in common? What might they suggest about how people answer questions that ask them to provide a single number along a large range?
 
@@ -195,6 +237,10 @@ The peaks for both candidates are highly concentrated at both ends of the spectr
 ### Part B
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 President Biden won this election. Would you predict this outcome from the way this representative sample responded to these questions? Provide a brief description of the reasoning behind your answer.
 
