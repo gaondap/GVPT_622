@@ -61,7 +61,10 @@ Prior to the 2020 US Presidential Election, the ANES asked respondents their hig
 What was the most common highest level of education obtained by respondents? What was the least common? *Use the `education` variable from the `nes` data set to answer these questions.*
 
 ```{r}
+library(tidyverse)
 library(polisciols)
+library(skimr)
+library(janitor)
 skim(nes$education)
 #or
 tabyl(nes, education)
@@ -176,6 +179,11 @@ Q1 - 1.5IQR = 104 - 31.5 = 72.5 (lower fence)\
 Q3 + 1.5 IQR = 125 + 31.5 = 156.5 (upper fence)
 
 No value is below or above either limitation, meaning there are no outliers in this dataset.
+
+```{r}
+ggplot(tibble(iq = iq), aes(x=iq)) +
+  geom_boxplot()
+```
 
 ### Part B
 
