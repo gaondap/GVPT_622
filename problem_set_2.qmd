@@ -1,0 +1,190 @@
+---
+title: "Problem Set 2"
+subtitle: "Due date: 18 September"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+  warning: false
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu) and to your class Github repository. You need to upload both your Quarto document (with R code, as needed) and its rendered output (either as a PDF or HTML file).
+
+**Total points: 25**
+
+## Question 1
+
+*Points: 10*
+
+::: callout-note
+8/10
+:::
+
+Suppose I want to examine the hypothesis that consuming political news coverage from cable network channels (e.g., CNN, MSNBC, Fox News, etc.) causes citizens to have less trust in government than if they were to consume it from mainstream print media (e.g., New York Times, Wall Street Journal, etc.). What is more, suppose that I believe that this effect is greatest among "young" citizens. Design the contours of an experiment to test this proposition (and be sure to sketch the key elements of the experimental design). Second, briefly describe any significant shortcomings that the experimental design might have.
+
+::: callout-note
+How would you get your sample of respondents?
+:::
+
+**Answer:** I would conduct an experiment involving three groups of subjects across varying age groups. These groups will be comprised of a control group and two treatment groups. This study will involve some sort of stimulus, which would be exposure to different forms of political news, and a questionnaire gauging subject attitudes. Only the control group will answer the questionnaire without exposure. Subjects in the treatment group would consume three pieces of media from either cable news or mainstream print across major political leanings (liberal, moderate, conservative) prior to questioning.
+
+I anticipate that, despite its experimental design, previous experiences with news media consumption will still affect subject questioning. Whether or not those experiences remain salient after treatment is still beyond the investigators' control. That being said, the hypothesis as it stands does not account for any previously held political beliefs. It may be of theoretical interest to consider these beliefs as an intervening variable worth controlling for. That being said, the questionnaire would need to be carefully designed as not to evoke answers derived from experiences outside the experiment. Finally, as with many experiments, it would be difficult to get a sample of subjects across multiple age groups that is representative of the general population.
+
+## Question 2
+
+*Points: 10*
+
+::: callout-note
+4/10
+:::
+
+Below are four hypothetical research designs to determine the effects of democratic governance on the funding of educational institutions. Briefly evaluate each sampling design in terms of its: (1) sampling variability; and, (2) sources of potential bias.
+
+A.  A sample of educational funding levels for every country in Europe for each of the last 100 years.
+
+    A.  This would offer a fair sampling variability as Europe has had its share of democratic and nondemocratic regimes, especially over the last 100 years.
+
+        ::: callout-note
+        Incorrect. There would be no variability.
+        :::
+
+    B.  Because these samples are restricted to a single continent, there would be an obvious bias towards European institutions and therefore would be difficult to generalize. Additionally, while older data may paint a picture of historical trends, they may also come with some contextual baggage that would need to be evaluated or explained to make it applicable to modernity. For example, education funding may have been generally low due to factors like inaccessibility or gender restrictions that were present even in democratic regimes.
+
+        ::: callout-note
+        Correct.
+        :::
+
+B.  A sample of educational funding levels in five randomly picked countries drawn from the global population of countries for each of the last 10 years.
+
+    A.  Random selection would give this sample decent variability, but its size and time frame are far too limited.
+
+        ::: callout-note
+        Incorrect. High variability because we are selecting such a small proportion of our population. Randomness comes into play in bias.
+        :::
+
+    B.  Restriction to the last 10 years would certainly make it pertinent to questions regarding modern governance, however it will be difficult to argue for a generalizable trend with such a short time frame.
+
+        ::: callout-note
+        Partially correct. Random selection means that we have no bias. It's a good point about timeframes (but our research question doesn't talk about our timeframe of interest).
+        :::
+
+C.  A survey of educational administrators that yields responses that allow for a comparison of educational funding levels in Russia and the United States for the six-year period from 2010 to 2015.
+
+    A.  The sample variability in this design would be contingent on how these administrators are selected. There is room for greater variability (like if these administrators were compared in terms of province *and* country), but would be fairly limited if it were to remain dichotomous.
+
+        ::: callout-note
+        Incorrect. Variability depends on the proportion of administrators selected.
+        :::
+
+    B.  Obviously the limited pool would provide rather narrow insight on how governance affects educational funding. Although these two cases offer variation in terms of regime, the small sample (if reduced to a country-dichotomy) would not be wholly representative of any globally historic trends. Additionally, like many surveys, it would be difficult to ensure the reliability of the data. This rings especially true for this experiment considering the funding level data is drawn directly from the survey answers of administrators who may inadvertently (or advertently) communicate inaccurate information.
+
+        ::: callout-note
+        Correct.
+        :::
+
+D.  A sample of 75 randomly selected countries' educational funding levels for each of the past 25 years.
+
+    A.  This design offers great variability in terms of size and time frame.
+
+        ::: callout-note
+        Incorrect. Variability would be low to moderate (which is good!). We are selecting a solid proportion of our population.
+        :::
+
+    B.  A source of bias within the design's control would be the time frame. Much like part B, this may be constrained to producing inferences on recent developments, but not so much on historic trends. Despite that, I think it also avoids much of the time-related complications discussed in part A because it would require less contextualization of historical data.
+
+        ::: callout-note
+        Partially correct.
+        :::
+
+## Question 3
+
+*Points: 5*
+
+::: callout-note
+5/5
+:::
+
+The COVID-19 pandemic wreaked havoc on the global economy. People became sick or died, supply chains snapped, and we all sheltered behind strict national borders or in our homes. We can see the effect of these changes when we look at how the growth of countries' Gross Domestic Product (GDP) changed between 2019 and the global pandemic's start in 2020.
+
+::: callout-note
+GDP is a popular measure of a country's annual economic output. Its annual growth tends to be approximately Normally distributed.
+:::
+
+```{r}
+library(tidyverse)
+library(wbstats)
+
+gdp_growth_df <- wb_data("NY.GDP.MKTP.KD.ZG", 
+                         start_date = 2019, 
+                         end_date = 2020, 
+                         return_wide = F)
+
+ggplot(gdp_growth_df, aes(x = value, fill = factor(date))) + 
+  geom_density(alpha = 0.75) + 
+  theme_minimal() + 
+  theme(plot.title = element_text(face = "bold"),
+        plot.title.position = "plot") + 
+  labs(title = "Countries' annual percentage growth rate of GDP in 2019 and 2020",
+       x = "Annual growth in GDP (%)",
+       y = "Density",
+       fill = "Year",
+       caption = "Source: World Bank")
+
+library(skimr)
+year_2019 <- gdp_growth_df |> 
+  filter(date != 2020) 
+year_2020 <- gdp_growth_df |> 
+  filter(date != 2019)
+
+skim(year_2019)
+skim(year_2020)
+```
+
+### Part A
+
+*Points: 2*
+
+Describe the distribution of all countries' annual GDP growth rates in 2019 (found in the `gdp_growth_df` dataframe). Do the same for 2020. Include in those descriptions their five-number summaries.
+
+**2019**: The distribution of GDP growth rates in 2019 is fairly Normal.
+
+1.  Min = -11.32
+2.  Q1 = 1.14
+3.  Q2 = 2.7
+4.  Q3 = 4.76
+5.  Max = 23.41
+
+**2020**: The distribution of GDP growth rates in 2020 is slightly left-skewed.
+
+1.  Min = -58.32
+2.  Q1 = -8.28
+3.  Q2 = -3.87
+4.  Q3 = -1.1
+5.  Max = 43.48
+
+### Part B
+
+*Points: 2*
+
+Calculate the mean and standard deviation of all countries' annual GDP growth rates in 2019. Do the same for 2020.
+
+**2019**:
+
+1.  Mean = 2.89
+2.  SD = 3.45
+
+**2020**:
+
+1.  Mean = -5.26
+2.  SD = 9.16
+
+### Part C
+
+*Points: 1*
+
+Compare the mean and standard deviation of GDP growth rates in 2019 with those in 2020. What, generally, happened to each country's economy? Do not use the words or phrases "mean" or "standard deviation" in your answer.
+
+**Answer:** Average GDP growth rates dramatically decreased in 2020 compared to 2019, primarily because of the COVID-19 pandemic. Lockdowns in response to the spread of COVID-19 led to massive halts in economic activity, resulting in lowered and even negative growth rates. Not all activity halted for countries, however, which disproportionately benefitted countries with more developed and diversified economies, thus leading to massive disparities in growth rates. This is why the average spread between countries' growth rates nearly tripled between in 2020 compared to 2019.
