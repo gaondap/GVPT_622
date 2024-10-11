@@ -18,6 +18,10 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 Suppose I am playing poker with a regular deck of 52 cards. I have three cards in my hand, one of which is a king. What is the probability that the next two cards I draw will both be kings?
 
 **Answer**:
@@ -32,9 +36,13 @@ Suppose I am playing poker with a regular deck of 52 cards. I have three cards i
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 A survey of 1,500 randomly selected individuals reveals that 46% of them have a college degree and that 31% of them have a gun in their house. If you were to assume that college graduation and gun ownership are independent of one another, what is the probability that an individual is both a college graduate and does not have a gun in their house?\
 
-**Answer: \
+**Answer:\
 **P(A & B) = P(A)\*P(B)
 
 ```{r}
@@ -46,6 +54,10 @@ P = 0.317 *or* 31.7% chance that an individual a college graduate that does not 
 ## Question 3
 
 *Points: 5*
+
+::: callout-note
+5/5
+:::
 
 I roll a fair six-sided dice and I get a number greater than three. What is the probability that the next two dice rolls will also generate numbers greater than three?\
 \
@@ -62,11 +74,15 @@ P = 0.25 *or* 25% chance that the next two dice rolls will both be greater than 
 
 *Points: 10*
 
+::: callout-note
+10/10
+:::
+
 Assume that in the United States, 15% of people are smokers and, of smokers, 60% smoke at least one pack a day. Among those who smoke at least a pack a day, 60% will develop lung cancer at some point in their lives while, in the rest of the population (which includes smokers who smoke less than a pack a day and non-smokers), only 10% will. What is the probability that a person who develops lung cancer was a smoker who smoked at least a pack a day?\
 \
 **Answer**:\
-First we need to find the total proportion of smokers, in this case *casual/non-smoker* and *habitual*, who develop lung cancer in relation to the general population. \
-P(A) is the probability that a habitual or one pack-a-day smokers will develop lung cancer \
+First we need to find the total proportion of smokers, in this case *casual/non-smoker* and *habitual*, who develop lung cancer in relation to the general population.\
+P(A) is the probability that a habitual or one pack-a-day smokers will develop lung cancer\
 P(B) is the probability that a casual or less than one pack-a-day smokers will develop lung cancer.\
 P(C) is the probability that someone from the rest of the population will develop lung cancer.\
 For the sake of this question, we can simplify the general population to 100.\
@@ -110,6 +126,10 @@ P(D) = 0.372 *or* 37.2% chance that someone who develops cancer lung cancer is a
 ## Question 5
 
 *Points: 5*
+
+::: callout-note
+5/5
+:::
 
 Assume that in the world, 60% of countries are democracies and 80% of countries have ratified the Rome Statute for the International Criminal Court. Assume further that 90% of democracies have ratified the Rome Accords. What is the probability that a country is either a democracy or has ratified the Rome Accords?\
 
