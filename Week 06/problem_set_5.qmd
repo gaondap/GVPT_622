@@ -1,0 +1,254 @@
+---
+title: "Problem Set 5"
+subtitle: "Due date: 23 October"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu) and to your class Github repository. You need to upload both your Quarto document (with R code, as needed) and its rendered output (either as a PDF or HTML file).
+
+**Total points: 25**
+
+## Question 1
+
+*Total points: 6*
+
+Use the data in the table below to answer the following questions.
+
+```{r}
+#| echo: false
+
+tibble::tibble(
+  `Age group` = c("18-24", "25-30", "31 and up", "TOTAL"),
+  `Non-voters` = c(70, 40, 220, 330),
+  Voters = c(50, 50, 570, 670),
+  Total = `Non-voters` + Voters
+) |> 
+  knitr::kable(caption = "Voting by Age in 2000")
+```
+
+### Part A
+
+*Points: 2*
+
+What is the probability of being 25-30 or a non-voter?
+
+```{r}
+((90/1000)+(330/1000))-(40/1000)
+```
+
+**Answer**: 0.38
+
+### Part B
+
+*Points: 4*
+
+Assuming a normal distribution, report the 95% confidence intervals for the percentage of 18-to-24-year-olds who did not vote, and then the percentage of 25-to-30-year-olds who did not vote.
+
+```{r}
+p_hat_1824 <- (70/120)
+p_hat_1824
+
+se_1824 <- sqrt(((p_hat_1824 * (1 - p_hat_1824)) / 120))
+se_1824
+
+lower_1824 <- p_hat_1824 - 1.96 * se_1824
+lower_1824
+
+upper_1824 <- p_hat_1824 + 1.96 * se_1824
+upper_1824
+```
+
+**Answer**: The confidence intervals for 18-to-24 year olds is **49.51%** and **67.15%**
+
+```{r}
+p_hat_2530 <- (40/90)
+p_hat_2530
+
+se_2530 <- sqrt(((p_hat_2530 * (1 - p_hat_2530)) / 90))
+se_2530
+
+lower_2530 <- p_hat_2530 - 1.96 * se_2530
+lower_2530
+
+upper_2530 <- p_hat_2530 + 1.96 * se_2530
+upper_2530
+```
+
+**Answer**: The confidence intervals for 25-to-30-year-olds is **34.18%** and **54.71%**
+
+## Question 2
+
+*Total points:* *7*
+
+Assume that the standard deviation for the population distribution of a state in which you want to conduct a poll is 200.
+
+### Part A
+
+*Points: 3*
+
+Calculate the spread of the sampling distribution for each of the following sample sizes: 1, 4, 25, 100, 250, 1000, 5,000, and 10,000.
+
+```{r}
+(200/sqrt(1))
+(200/sqrt(4))
+(200/sqrt(25))
+(200/sqrt(100))
+(200/sqrt(250))
+(200/sqrt(1000))
+(200/sqrt(5000))
+(200/sqrt(10000))
+```
+
+**Answer**:\
+1 = 200\
+4 = 100\
+25 = 40\
+100 = 20\
+250 = 12.65\
+1000 = 6.32\
+5000 = 2.83\
+10000 = 2
+
+### Part B
+
+*Points: 1*
+
+Describe specifically how the variability of the sampling distribution changes as the sample size varies. Considering the expense of running a poll, which sample size do you think is most optimal if conducting the poll?\
+\
+**Answer**: 1000 offers a tight spread. Going past 1000 would only provide extremely diminished returns.
+
+### Part C
+
+*Points: 3*
+
+Display your results graphically (using R) with the sample size on the x-axis and the standard error (of the sampling distribution) on the y-axis.
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+
+tibble(sample_size = seq(from = 200, to = 10000, by = 100)) |> 
+  rowwise() |> 
+  mutate(se = 200/sqrt(sample_size)) |> 
+  ggplot(aes(x = sample_size, y = se)) + 
+  geom_line() + 
+  theme_minimal() + 
+  labs(title = "Standard error according to sample size",
+      x = "Number of observations in the sample",
+      y = "Standard error")
+```
+
+## Question 3
+
+*Points: 4*
+
+Suppose you conduct a survey (to generate a sample mean of interest) and find that it has a margin of error of 4.5 with a sample size of 900 using a 95% confidence interval. What would the margin of error be for a 90% confidence interval?\
+\
+**Answer:\
+**To start, we can plug in the given values in the following equation:\
+`n = ( z2 * s2 ) / ( m2 )`
+
+We find that we have the following:\
+`900 = ( 1.962 * s2 ) / ( 4.52 )`\
+\
+We can solve for s^2^ and then calculate its square root.\
+`( 900 * 4.52 ) / ( 1.962 ) = s2 )`\
+
+```{r}
+print(paste(
+  sqrt(( 900 * 4.5^2 ) / ( 1.96^2 ))))
+
+```
+
+Now that we have s, we can calculate the m for a 90% confidence interval. \
+`√n = ( √z2 * √s2 ) / ( √m2 )`\
+\
+To solve for the MOE, the equation becomes the following:\
+`m = ( z * s ) / √n`
+
+The z-score for a confidence interval of 90% is approximately 1.645. Given that, the equation to solve for the new m is as follows:\
+
+```{r}
+print(paste(
+  (1.645 * 68.87755) / sqrt(900)))
+```
+
+The margin of error for a 90% confidence interval is approximately **3.78**.
+
+## Question 4
+
+*Points: 4*
+
+Assume that, in State A, the mean income in the population is \$20,000 with a standard deviation of \$2,000. If you took an SRS of 900 individuals from that population, what is the probability that you would get a sample mean income of \$20,200 or greater? What would be the probability if the sample size was only 25?
+
+::: callout-note
+Assume a normal distribution for both questions.
+:::
+
+**Answer**: \
+First, we have to calculate the standard error. We can use the SE for both survey sample sizes to determine their respective Z scores. This is done through the following equation:\
+`Z = x̄ - µ / σ`\
+Since these surveys are assumed to be distributed Normally, we can use these Z-scores to determine probability.\
+
+```{r}
+s_900 <- (2000/sqrt(900))
+
+z_900 <- ((20200 - 20000)/s_900)
+
+print(z_900)
+
+s_25 <- (2000/sqrt(25))
+
+z_25 <- ((20200 - 20000)/s_25)
+
+print(z_25)
+
+```
+
+P(Z ≥ 3.0) = 0.00135\
+The probability that you would get a sample mean income of \$20,200 or greater in a SRS of 900 is 0.00135. \
+\
+P(Z ≥ 0.5) = 0.30854\
+The probability that you would get a sample mean income of \$20,200 or greater in a SRS of 25 is 0.30854.
+
+## Question 5
+
+*Points: 4*
+
+Assume that a coin is fair. If I flip a coin 500 times, what is a 95% confidence interval for the range of the count of heads that I will get? What if I flip the coin 5,000 times? What about 50,000 times?
+
+**Answer**:\
+First, we need to find the standard error for these different counts using the following equation:\
+`se(p̂) = √((p (1 - p)/n)`
+
+Since these coins are assumed to be fair, the probability of either outcome is 0.5. Therefore, p = 0.5. Once these standard errors are accounted for, the following equation can be used to determine the range of the count of heads within a 95% confidence interval:\
+`p̂ ± 1.96 * se(p̂)`\
+
+```{r}
+se_500 <- sqrt((0.5 * 0.5)/500)
+
+upper_500 <- (500 + 1.96*se_500)
+lower_500 <- (500 - 1.96*se_500)
+
+print(paste("The range of the count of heads within a 95% confidence interval for 500 coin flips is between", upper_500, "and", lower_500))
+
+se_5k <- sqrt((0.5 * 0.5)/5000)
+
+upper_5k <- (5000 + 1.96*se_5k)
+lower_5k <- (5000 - 1.96*se_5k)
+
+print(paste("The range of the count of heads within a 95% confidence interval for 5000 coin flips is between", upper_5k, "and", lower_5k))
+
+se_50k <- sqrt((0.5 * 0.5)/50000)
+
+upper_50k <- (50000 + 1.96*se_50k)
+lower_50k <- (50000 - 1.96*se_50k)
+
+print(paste("The range of the count of heads within a 95% confidence interval for 50000 coin flips is between", upper_50k, "and", lower_50k))
+```
