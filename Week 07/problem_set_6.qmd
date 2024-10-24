@@ -25,21 +25,58 @@ I hypothesize that the mean mathematics SAT score for University of Maryland stu
 
 Based on my sample, what is a point estimate for the mean mathematics SAT score for University of Maryland students?
 
+**Answer**:\
+610
+
 ### Part B
 
 What is a 95% confidence interval around that estimate?
+
+**Answer**:\
+Following the equation for calculating the confidence interval:
+
+$$
+\bar{x} \pm z^* \left(\frac{s}{\sqrt{n}}\right)
+$$
+
+We can identify the lower and upper bounds as `r 610 - 1.96*(75/sqrt(625))` and `r 610 + 1.96*(75/sqrt(625))` respectively.
 
 ### Part C
 
 What is the null hypothesis?
 
+**Answer**: 
+$$
+H_0: \mu = 600
+$$
+*or* H₀: The mean mathematics SAT score for the University of Maryland is not different from 600.
+
 ### Part D
 
 What is the two-tailed p-value and what does it mean?
 
+**Answer**: First, we have to find the t-statistic, which is as follows:
+$$
+t =\frac{\bar{x} - \mu_0}{\frac {s}{\sqrt{n}}}
+$$
+Substituting the given variables, the equation becomes:
+$$
+t = \frac{610 - 600}{\frac {75}{\sqrt{625}}}
+$$
+This equation produces a test statistic, or z-score, of `r (610-600)/(75/sqrt(625))`
+
+Given this score, we determine that the two-tailed p-value is
+```{r}
+2 * (1 - pnorm((610-600)/(75/sqrt(625))))
+```
+
+The two tailed p-value is `r 2 * (1 - pnorm((610-600)/(75/sqrt(625))))`, far below the standard significance level of 0.05, meaning that there is strong evidence against the null hypothesis. In other words, the mean of SAT scores in UMD is likely to be different from 600. 
+
 ### Part E
 
 Do the data support my hypothesis? Why, or why not?
+
+**Answer**: The data supports the hypothesis because the p-value indicates there is significant evidence against the null hypothesis. We are far more likely to produce a sample of UMD students with a mean mathematics score different from 600 than otherwise.
 
 ## Question 2
 
@@ -51,19 +88,61 @@ I take an SRS of 900 citizens in a public opinion survey and find that the mean 
 
 What is the null hypothesis?
 
+**Answer**: 
+$$
+H_0:\mu \leq 50
+$$
+*or* H₀: Feelings towards Biden should be less than or equal to 50. 
+
 ### Part B
 
 What is a 95% confidence interval around the sample statistic? Does this interval indicate support for a two-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
+**Answer**: 
+```{r}
+n <- 900
+x_bar <- 51.5
+sd <- 25
+
+se <- sd/sqrt(n)
+
+lower_limit <- x_bar - 1.96*se
+upper_limit <- x_bar + 1.96*se
+
+print(lower_limit)
+print(upper_limit)
+```
+
+The null hypothesis cannot be rejected under a two-tail test. 50 falls within the lower and upper limits of *49.87* and *53.13*.
+
 ### Part C
 
 What is a 90% confidence interval around the sample statistic? Does this interval indicate support for a one-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
+
+**Answer**:
+```{r}
+n <- 900
+x_bar <- 51.5
+sd <- 25
+
+se <- sd/sqrt(n)
+
+lower_limit90 <- x_bar - 1.65*se
+upper_limit90 <- x_bar + 1.65*se
+
+print(lower_limit90)
+print(upper_limit90)
+```
+There is support for rejecting the null hypothesis under a one-tailed test. 50 does not fall within the lower and upper limits of *50.13* and *52.88*.
 
 ## Question 3
 
 *Points: 5*
 
 Suppose I conduct a difference of means test and obtain a t-statistic of 2.50. What does this indicate about the statistical significance of the sample mean compared to the null hypothesis?
+
+**Answer**:
+A t-statistic of 2.50 indicates that there is a potentially statistically significant difference between the sample and null mean. The existence of a statistically significant relationship depends on the degrees of freedom and the desired alpha. If the t-statistic is greater than the critical value, then it rejects the null hypothesis and is statistically significant. 
 
 ## Question 4
 
@@ -75,21 +154,73 @@ I hypothesize that fewer than 40% of registered voters approve of President Bide
 
 Based on my sample, what is a point estimate for the proportion of the population that approves of President Biden?
 
+**Answer**: The point estimate is .379.
+
 ### Part B
 
 What is a 90% confidence interval around that estimate?
+
+**Answer**: First, to find a standard deviation for proportion *p*, we must use the following equation:
+
+$$
+se(\hat{p})=\sqrt{\frac{\hat{p} - (1-\hat{p})}{n}}
+$$
+Once this is resolved, then we can calculate the upper and lower boundaries:
+$$
+\hat{p} \pm z \times \left( \sqrt{\frac{\hat{p} - (1-\hat{p})}{n}} \right)
+$$
+A 90% confidence interval requires a z of 1.65. To solve:
+```{r}
+p_hat <- .379
+n <- 720
+z <- 1.65
+
+se <- sqrt((p_hat*(1 - p_hat)/n))
+
+lower_boundary <- (p_hat - z*se)
+upper_boundary <- (p_hat + z*se)
+
+print(lower_boundary)
+print(upper_boundary)
+```
+The lower and upper boundaries with a 90$ confidence interval are *.349* and *.409* respectively, or 34.9% and 40.9%. 
 
 ### Part C
 
 What is the null hypothesis?
 
+**Answer**:
+$$
+H_0:p\geq.40
+$$
+In other words, *the proportion of registered voters that approve of president biden is not fewer than 40%.* 
+
 ### Part D
 
 What is the one-tailed p-value and what does it mean?
 
+**Answer**:
+The equation for a one-tailed p-value would be as follows:
+$$
+Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
+$$
+We can then determine the p-value from Z using the `pnorm` function in R and subtracting it from 1.
+```{r}
+p_hat_D <- .379
+p_0 <- .4
+n <- 720
+
+z_score <- (((p_hat_D - p_0)) / (sqrt((p_0 * (1 - p_0))/ n)))
+
+pnorm(z_score)
+```
+The p-value is *0.125* meaning there is a 12.5% possibility of pulling a sample proportion where 37.9% or fewer people approve of Biden in a null world where 40% is the mean.
+
 ### Part E
 
 Do the data support my hypothesis? Why, or why not?
+
+**Answer**: The data does *not* support the hypothesis because the p-value is past the traditional .10 and .05 cutoffs, meaning the relationship is not significant. 
 
 ## Question 5
 
@@ -110,3 +241,60 @@ q_5_df <- wb_data(c("SP.DYN.TFRT.IN", "SE.ADT.1524.LT.FE.ZS"),
 ```
 
 I hypothesize that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy. Use data collected above from the World Bank to test my hypothesis. State the null hypothesis and interpret what the results tell us about the null and alternative hypotheses. Show all relevant work in a professional format.
+
+**Answer**:
+The null hypothesis, where birth rate is represented as μ, is as follows:
+$$
+H_0: \mu_{\text{high literacy}} \geq \mu_{\text{low literacy}}
+$$
+
+```{r}
+#Copy given data from above
+library(wbstats)
+library(tidyverse)
+library(infer)
+library(scales)
+
+q_5_df <- wb_data(c("SP.DYN.TFRT.IN", "SE.ADT.1524.LT.FE.ZS"),
+                  start_date = 2022,
+                  end_date = 2022) |> 
+  rename(lit_rate = `SE.ADT.1524.LT.FE.ZS`,
+         fertility = `SP.DYN.TFRT.IN`) |> 
+  mutate(lit_rate = cut_interval(lit_rate, 2, labels = c("Lower half", "Upper half"))) |> 
+  drop_na(fertility, lit_rate)
+
+#Group countries by literacy rate
+lit_rate_group <- q_5_df |> 
+  group_by(lit_rate) |> 
+  summarise(n_countries = n(), 
+            avg_fertility = mean(fertility)) |> 
+  mutate(diff_means = avg_fertility - lead(avg_fertility))
+
+lit_rate_group
+
+#calculate difference of means in sample world
+diff_means <- lit_rate_group |> 
+  drop_na(diff_means) |> 
+  pull(diff_means)
+
+#Simulate null environment
+lit_rate_null <- q_5_df |>  
+  # Set up our DV and IV
+  specify(fertility ~ lit_rate) |>  
+  # Define our null hypothesis
+  hypothesize(null = "independence") |>
+  # Generate 5000 simulated samples from that null world using permutation
+  generate(reps = 5000, type = "permute")
+
+diff_means_null <- lit_rate_null |> 
+  calculate("diff in means", order = c("Lower half", "Upper half"))
+
+diff_means_null |> 
+  get_p_value(obs_stat = diff_means, direction = "greater") |> 
+  mutate(p_value_clean = pvalue(p_value, accuracy = 0.00001))
+
+#confirming results with a t-test
+print(t.test(fertility ~ lit_rate, data = q_5_df))
+```
+
+The data *rejects the null hypothesis* and offers an alternative hypothesis stating that the *true difference in means between group Lower half and group Upper half is not equal to 0*, meaning that they are different. Considering the difference in means and the significant p-value, the data confirms the original hypothesis that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy. 
