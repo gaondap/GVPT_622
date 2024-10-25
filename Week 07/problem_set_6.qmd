@@ -23,12 +23,20 @@ I hypothesize that the mean mathematics SAT score for University of Maryland stu
 
 ### Part A
 
+::: callout-note
+2/2
+:::
+
 Based on my sample, what is a point estimate for the mean mathematics SAT score for University of Maryland students?
 
 **Answer**:\
 610
 
 ### Part B
+
+::: callout-note
+2/2
+:::
 
 What is a 95% confidence interval around that estimate?
 
@@ -43,36 +51,47 @@ We can identify the lower and upper bounds as `r 610 - 1.96*(75/sqrt(625))` and 
 
 ### Part C
 
+::: callout-note
+2/2
+:::
+
 What is the null hypothesis?
 
-**Answer**: 
-$$
+**Answer**: $$
 H_0: \mu = 600
-$$
-*or* H₀: The mean mathematics SAT score for the University of Maryland is not different from 600.
+$$ *or* H₀: The mean mathematics SAT score for the University of Maryland is not different from 600.
 
 ### Part D
 
+::: callout-note
+1/2
+:::
+
 What is the two-tailed p-value and what does it mean?
 
-**Answer**: First, we have to find the t-statistic, which is as follows:
-$$
+**Answer**: First, we have to find the t-statistic, which is as follows: $$
 t =\frac{\bar{x} - \mu_0}{\frac {s}{\sqrt{n}}}
-$$
-Substituting the given variables, the equation becomes:
-$$
+$$ Substituting the given variables, the equation becomes: $$
 t = \frac{610 - 600}{\frac {75}{\sqrt{625}}}
-$$
-This equation produces a test statistic, or z-score, of `r (610-600)/(75/sqrt(625))`
+$$ This equation produces a test statistic, or z-score, of `r (610-600)/(75/sqrt(625))`
 
 Given this score, we determine that the two-tailed p-value is
+
 ```{r}
 2 * (1 - pnorm((610-600)/(75/sqrt(625))))
 ```
 
-The two tailed p-value is `r 2 * (1 - pnorm((610-600)/(75/sqrt(625))))`, far below the standard significance level of 0.05, meaning that there is strong evidence against the null hypothesis. In other words, the mean of SAT scores in UMD is likely to be different from 600. 
+The two tailed p-value is `r 2 * (1 - pnorm((610-600)/(75/sqrt(625))))`, far below the standard significance level of 0.05, meaning that there is strong evidence against the null hypothesis. In other words, the mean of SAT scores in UMD is likely to be different from 600.
+
+::: callout-note
+It means that there is a vanishingly small chance (\<0.001%) that I would observe a value that was either 10 points higher or lower than a mean mathematics SAT score for University of Maryland students of 600.
+:::
 
 ### Part E
+
+::: callout-note
+2/2
+:::
 
 Do the data support my hypothesis? Why, or why not?
 
@@ -86,19 +105,30 @@ I take an SRS of 900 citizens in a public opinion survey and find that the mean 
 
 ### Part A
 
+::: callout-note
+0/2
+:::
+
 What is the null hypothesis?
 
-**Answer**: 
-$$
+**Answer**: $$
 H_0:\mu \leq 50
-$$
-*or* H₀: Feelings towards Biden should be less than or equal to 50. 
+$$ *or* H₀: Feelings towards Biden should be less than or equal to 50.
+
+::: callout-note
+It is equal to 50.
+:::
 
 ### Part B
 
+::: callout-note
+4/4
+:::
+
 What is a 95% confidence interval around the sample statistic? Does this interval indicate support for a two-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
-**Answer**: 
+**Answer**:
+
 ```{r}
 n <- 900
 x_bar <- 51.5
@@ -117,9 +147,14 @@ The null hypothesis cannot be rejected under a two-tail test. 50 falls within th
 
 ### Part C
 
+::: callout-note
+4/4
+:::
+
 What is a 90% confidence interval around the sample statistic? Does this interval indicate support for a one-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
 **Answer**:
+
 ```{r}
 n <- 900
 x_bar <- 51.5
@@ -133,16 +168,20 @@ upper_limit90 <- x_bar + 1.65*se
 print(lower_limit90)
 print(upper_limit90)
 ```
+
 There is support for rejecting the null hypothesis under a one-tailed test. 50 does not fall within the lower and upper limits of *50.13* and *52.88*.
 
 ## Question 3
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 Suppose I conduct a difference of means test and obtain a t-statistic of 2.50. What does this indicate about the statistical significance of the sample mean compared to the null hypothesis?
 
-**Answer**:
-A t-statistic of 2.50 indicates that there is a potentially statistically significant difference between the sample and null mean. The existence of a statistically significant relationship depends on the degrees of freedom and the desired alpha. If the t-statistic is greater than the critical value, then it rejects the null hypothesis and is statistically significant. 
+**Answer**: A t-statistic of 2.50 indicates that there is a potentially statistically significant difference between the sample and null mean. The existence of a statistically significant relationship depends on the degrees of freedom and the desired alpha. If the t-statistic is greater than the critical value, then it rejects the null hypothesis and is statistically significant.
 
 ## Question 4
 
@@ -152,11 +191,19 @@ I hypothesize that fewer than 40% of registered voters approve of President Bide
 
 ### Part A
 
+::: callout-note
+1/1
+:::
+
 Based on my sample, what is a point estimate for the proportion of the population that approves of President Biden?
 
 **Answer**: The point estimate is .379.
 
 ### Part B
+
+::: callout-note
+1/1
+:::
 
 What is a 90% confidence interval around that estimate?
 
@@ -164,12 +211,10 @@ What is a 90% confidence interval around that estimate?
 
 $$
 se(\hat{p})=\sqrt{\frac{\hat{p} - (1-\hat{p})}{n}}
-$$
-Once this is resolved, then we can calculate the upper and lower boundaries:
-$$
+$$ Once this is resolved, then we can calculate the upper and lower boundaries: $$
 \hat{p} \pm z \times \left( \sqrt{\frac{\hat{p} - (1-\hat{p})}{n}} \right)
-$$
-A 90% confidence interval requires a z of 1.65. To solve:
+$$ A 90% confidence interval requires a z of 1.65. To solve:
+
 ```{r}
 p_hat <- .379
 n <- 720
@@ -183,28 +228,37 @@ upper_boundary <- (p_hat + z*se)
 print(lower_boundary)
 print(upper_boundary)
 ```
-The lower and upper boundaries with a 90$ confidence interval are *.349* and *.409* respectively, or 34.9% and 40.9%. 
+
+The lower and upper boundaries with a 90\$ confidence interval are *.349* and *.409* respectively, or 34.9% and 40.9%.
 
 ### Part C
 
+::: callout-note
+0/1
+:::
+
 What is the null hypothesis?
 
-**Answer**:
-$$
+**Answer**: $$
 H_0:p\geq.40
-$$
-In other words, *the proportion of registered voters that approve of president biden is not fewer than 40%.* 
+$$ In other words, *the proportion of registered voters that approve of president biden is not fewer than 40%.*
+
+::: callout-note
+Is equal to 40%.
+:::
 
 ### Part D
 
+::: callout-note
+1/1
+:::
+
 What is the one-tailed p-value and what does it mean?
 
-**Answer**:
-The equation for a one-tailed p-value would be as follows:
-$$
+**Answer**: The equation for a one-tailed p-value would be as follows: $$
 Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
-$$
-We can then determine the p-value from Z using the `pnorm` function in R and subtracting it from 1.
+$$ We can then determine the p-value from Z using the `pnorm` function in R and subtracting it from 1.
+
 ```{r}
 p_hat_D <- .379
 p_0 <- .4
@@ -214,17 +268,26 @@ z_score <- (((p_hat_D - p_0)) / (sqrt((p_0 * (1 - p_0))/ n)))
 
 pnorm(z_score)
 ```
+
 The p-value is *0.125* meaning there is a 12.5% possibility of pulling a sample proportion where 37.9% or fewer people approve of Biden in a null world where 40% is the mean.
 
 ### Part E
 
+::: callout-note
+1/1
+:::
+
 Do the data support my hypothesis? Why, or why not?
 
-**Answer**: The data does *not* support the hypothesis because the p-value is past the traditional .10 and .05 cutoffs, meaning the relationship is not significant. 
+**Answer**: The data does *not* support the hypothesis because the p-value is past the traditional .10 and .05 cutoffs, meaning the relationship is not significant.
 
 ## Question 5
 
 *Points: 5*
+
+::: callout-note
+5/5
+:::
 
 ```{r}
 
@@ -242,9 +305,7 @@ q_5_df <- wb_data(c("SP.DYN.TFRT.IN", "SE.ADT.1524.LT.FE.ZS"),
 
 I hypothesize that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy. Use data collected above from the World Bank to test my hypothesis. State the null hypothesis and interpret what the results tell us about the null and alternative hypotheses. Show all relevant work in a professional format.
 
-**Answer**:
-The null hypothesis, where birth rate is represented as μ, is as follows:
-$$
+**Answer**: The null hypothesis, where birth rate is represented as μ, is as follows: $$
 H_0: \mu_{\text{high literacy}} \geq \mu_{\text{low literacy}}
 $$
 
@@ -297,4 +358,4 @@ diff_means_null |>
 print(t.test(fertility ~ lit_rate, data = q_5_df))
 ```
 
-The data *rejects the null hypothesis* and offers an alternative hypothesis stating that the *true difference in means between group Lower half and group Upper half is not equal to 0*, meaning that they are different. Considering the difference in means and the significant p-value, the data confirms the original hypothesis that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy. 
+The data *rejects the null hypothesis* and offers an alternative hypothesis stating that the *true difference in means between group Lower half and group Upper half is not equal to 0*, meaning that they are different. Considering the difference in means and the significant p-value, the data confirms the original hypothesis that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy.
