@@ -3128,24 +3128,27 @@ vertical-align: -.125em;
 <p><em>Points: 4</em></p>
 <p>Make a cross-tab, by hand, of the relationship between these two variables based on the following (completely made up) data. Make sure that you present both raw counts and the appropriate percentages to examine the relationship.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>age_golf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;51-65&quot;</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">preference =</span> <span class="fu">c</span>(<span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Not at all&quot;</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>age_golf_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>age_golf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;51-65&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;51-65&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;66-plus&quot;</span>, <span class="st">&quot;21-35&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;36-50&quot;</span>, <span class="st">&quot;66-plus&quot;</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">preference =</span> <span class="fu">c</span>(<span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Not at all&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Not at all&quot;</span>, <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Very much&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Very much&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Somewhat&quot;</span>, <span class="st">&quot;Not at all&quot;</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>age_golf_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 40 × 2
    age     preference
@@ -3162,22 +3165,274 @@ vertical-align: -.125em;
 10 51-65   Very much 
 # ℹ 30 more rows</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(preference <span class="sc">~</span> age, <span class="at">data =</span> age_golf_df, <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;row&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+      function styleCell_hq5l1l9rhlk3ctqqufu4(i, j, css_id) {
+        var table = document.getElementById("tinytable_hq5l1l9rhlk3ctqqufu4");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_hq5l1l9rhlk3ctqqufu4');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_hq5l1l9rhlk3ctqqufu4(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_hq5l1l9rhlk3ctqqufu4");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 0, 'tinytable_css_id8pgw2vcxxk8rl5772eq3') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 1, 'tinytable_css_id8pgw2vcxxk8rl5772eq3') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 2, 'tinytable_css_idk647uijq1hcozsgpl246') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 3, 'tinytable_css_idk647uijq1hcozsgpl246') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 4, 'tinytable_css_idk647uijq1hcozsgpl246') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 5, 'tinytable_css_idk647uijq1hcozsgpl246') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(0, 6, 'tinytable_css_idk647uijq1hcozsgpl246') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(1, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(2, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(3, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(4, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(5, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(6, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(7, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 0, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 1, 'tinytable_css_idlj411i1kb4ccks42hb8c') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 2, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 3, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 4, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 5, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+window.addEventListener('load', function () { styleCell_hq5l1l9rhlk3ctqqufu4(8, 6, 'tinytable_css_idxg09fofxgo4t3r54psex') })
+    </script>
+
+    <style>
+.table td.tinytable_css_id8pgw2vcxxk8rl5772eq3, .table th.tinytable_css_id8pgw2vcxxk8rl5772eq3 { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idk647uijq1hcozsgpl246, .table th.tinytable_css_idk647uijq1hcozsgpl246 { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idlj411i1kb4ccks42hb8c, .table th.tinytable_css_idlj411i1kb4ccks42hb8c { text-align: left; }
+.table td.tinytable_css_idxg09fofxgo4t3r54psex, .table th.tinytable_css_idxg09fofxgo4t3r54psex { text-align: right; }
+</style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_hq5l1l9rhlk3ctqqufu4" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">preference</th>
+                <th scope="col"> </th>
+                <th scope="col">21-35</th>
+                <th scope="col">36-50</th>
+                <th scope="col">51-65</th>
+                <th scope="col">66-plus</th>
+                <th scope="col">All</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>Not at all</td>
+                  <td>N    </td>
+                  <td>5   </td>
+                  <td>1   </td>
+                  <td>2   </td>
+                  <td>3   </td>
+                  <td>11   </td>
+                </tr>
+                <tr>
+                  <td>          </td>
+                  <td>% row</td>
+                  <td>45.5</td>
+                  <td>9.1 </td>
+                  <td>18.2</td>
+                  <td>27.3</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Somewhat  </td>
+                  <td>N    </td>
+                  <td>6   </td>
+                  <td>5   </td>
+                  <td>2   </td>
+                  <td>4   </td>
+                  <td>17   </td>
+                </tr>
+                <tr>
+                  <td>          </td>
+                  <td>% row</td>
+                  <td>35.3</td>
+                  <td>29.4</td>
+                  <td>11.8</td>
+                  <td>23.5</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>Very much </td>
+                  <td>N    </td>
+                  <td>1   </td>
+                  <td>3   </td>
+                  <td>4   </td>
+                  <td>4   </td>
+                  <td>12   </td>
+                </tr>
+                <tr>
+                  <td>          </td>
+                  <td>% row</td>
+                  <td>8.3 </td>
+                  <td>25.0</td>
+                  <td>33.3</td>
+                  <td>33.3</td>
+                  <td>100.0</td>
+                </tr>
+                <tr>
+                  <td>All       </td>
+                  <td>N    </td>
+                  <td>12  </td>
+                  <td>9   </td>
+                  <td>8   </td>
+                  <td>11  </td>
+                  <td>40   </td>
+                </tr>
+                <tr>
+                  <td>          </td>
+                  <td>% row</td>
+                  <td>30.0</td>
+                  <td>22.5</td>
+                  <td>20.0</td>
+                  <td>27.5</td>
+                  <td>100.0</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
 </div>
 </section>
 <section id="part-b" class="level3">
 <h3 class="anchored" data-anchor-id="part-b">Part B</h3>
 <p><em>Points: 2</em></p>
 <p>Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).</p>
+<p><strong>Answer</strong>: There is weak support for the data. While there is slight positive relationship in older age rangers and “very much” preferencei in playing gold, the sample size is quite small, making it difficult to concretely determine the strength of the relationship.</p>
 </section>
 <section id="part-c" class="level3">
 <h3 class="anchored" data-anchor-id="part-c">Part C</h3>
 <p><em>Points: 2</em></p>
 <p>Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obs_values <span class="ot">&lt;-</span> <span class="fu">count</span>(age_golf_df, preference, age, <span class="at">name =</span> <span class="st">&quot;obs_n&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>age_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(age_golf_df, age, <span class="at">name =</span> <span class="st">&quot;age_total&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>preference_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(age_golf_df, preference, <span class="at">name =</span> <span class="st">&quot;preference_total&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>obs_exp_counts <span class="ot">&lt;-</span> preference_totals <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(age_totals) <span class="sc">|&gt;</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(age) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_n =</span> (preference_total <span class="sc">*</span> age_total) <span class="sc">/</span> <span class="fu">nrow</span>(age_golf_df)) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(obs_values, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;preference&quot;</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>obs_exp_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   age     preference preference_total age_total exp_n obs_n
+   &lt;chr&gt;   &lt;chr&gt;                 &lt;int&gt;     &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
+ 1 21-35   Not at all               11        12  3.3      5
+ 2 36-50   Not at all               11         9  2.48     1
+ 3 51-65   Not at all               11         8  2.2      2
+ 4 66-plus Not at all               11        11  3.02     3
+ 5 21-35   Somewhat                 17        12  5.1      6
+ 6 36-50   Somewhat                 17         9  3.82     5
+ 7 51-65   Somewhat                 17         8  3.4      2
+ 8 66-plus Somewhat                 17        11  4.68     4
+ 9 21-35   Very much                12        12  3.6      1
+10 36-50   Very much                12         9  2.7      3
+11 51-65   Very much                12         8  2.4      4
+12 66-plus Very much                12        11  3.3      4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chi_sq <span class="ot">&lt;-</span> obs_exp_counts <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs_n <span class="sc">-</span> exp_n,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2 =</span> diff<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2_standard =</span> diff_2 <span class="sc">/</span> exp_n) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">chi_sq =</span> <span class="fu">sum</span>(diff_2_standard)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.093151</code></pre>
+</div>
+</div>
+<p><strong>Answer</strong>: The chi-square is <strong>6.09</strong>.</p>
 </section>
 <section id="part-d" class="level3">
 <h3 class="anchored" data-anchor-id="part-d">Part D</h3>
 <p><em>Points: 2</em></p>
 <p>Using the chi-square statistic that you computed in question 1(c), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?</p>
+<p><strong>Answer</strong>: This chi-square value, with six degrees of freedom, produces a p-value of 0.4128367, meaning the relationship observed is <em>not</em> statistically significant. Therefore, we cannot reject the null with 95% confidence.</p>
 </section>
 </section>
 <section id="question-2" class="level2">
@@ -3185,6 +3440,358 @@ vertical-align: -.125em;
 <p><em>Points: 10</em></p>
 <p>I hypothesize that people with higher levels of education tend to be more likely to pay higher levels of attention to politics. Use the <code>nes</code> dataset from the <code>poliscidols</code> package to test my hypothesis. Create a cross-tab examining the relationship between individuals’ levels of education (<code>education</code>) and the time they spend paying attention to politics (<code>attention_to_politics</code>).</p>
 <p>Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant). Report a chi-square statistic. What does the chi-square statistic tell you about whether you can reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nes_clean <span class="ot">&lt;-</span> polisciols<span class="sc">::</span>nes <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(education, attention_to_politics), as.character)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="sc">!</span>education <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Refused&quot;</span>, <span class="st">&quot;Don&#39;t know&quot;</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="sc">!</span>attention_to_politics <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Refused&quot;</span>, <span class="st">&quot;Don&#39;t know&quot;</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          <span class="sc">!</span><span class="fu">is.na</span>(education),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="sc">!</span><span class="fu">is.na</span>(attention_to_politics)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">education =</span> <span class="fu">factor</span>(education, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Less than high school credential&quot;</span>, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;High school credential&quot;</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Some post-high school, no bachelor’s degree&quot;</span>, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Bachelor’s degree&quot;</span>, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Graduate degree&quot;</span>)),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">attention_to_politcs =</span> <span class="fu">factor</span>(attention_to_politics,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Never&quot;</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">&quot;Some of the time&quot;</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">&quot;About half the time&quot;</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">&quot;Most of the time&quot;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">&quot;Always&quot;</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">ordered =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(attention_to_politics <span class="sc">~</span> education, <span class="at">data =</span> nes_clean,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                     <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;col&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+      function styleCell_klc4l53sddqwewofbr0u(i, j, css_id) {
+        var table = document.getElementById("tinytable_klc4l53sddqwewofbr0u");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_klc4l53sddqwewofbr0u');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_klc4l53sddqwewofbr0u(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_klc4l53sddqwewofbr0u");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 0, 'tinytable_css_idflrc27lzdfeivw7ssguk') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 1, 'tinytable_css_idflrc27lzdfeivw7ssguk') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 2, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 3, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 4, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 5, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 6, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(0, 7, 'tinytable_css_id52490h49q3sfwr068gq8') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(1, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(2, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(3, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(4, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(5, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(6, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(7, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(8, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(9, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(10, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(11, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 0, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 1, 'tinytable_css_idnreadfwfl69o6yp1gejg') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 2, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 3, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 4, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 5, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 6, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+window.addEventListener('load', function () { styleCell_klc4l53sddqwewofbr0u(12, 7, 'tinytable_css_id2igki6bsoyyiqmexv80x') })
+    </script>
+
+    <style>
+.table td.tinytable_css_idflrc27lzdfeivw7ssguk, .table th.tinytable_css_idflrc27lzdfeivw7ssguk { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_id52490h49q3sfwr068gq8, .table th.tinytable_css_id52490h49q3sfwr068gq8 { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idnreadfwfl69o6yp1gejg, .table th.tinytable_css_idnreadfwfl69o6yp1gejg { text-align: left; }
+.table td.tinytable_css_id2igki6bsoyyiqmexv80x, .table th.tinytable_css_id2igki6bsoyyiqmexv80x { text-align: right; }
+</style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_klc4l53sddqwewofbr0u" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">attention_to_politics</th>
+                <th scope="col"> </th>
+                <th scope="col">Less than high school credential</th>
+                <th scope="col">High school credential</th>
+                <th scope="col">Some post-high school, no bachelor’s degree</th>
+                <th scope="col">Bachelor’s degree</th>
+                <th scope="col">Graduate degree</th>
+                <th scope="col">All</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>About half the time</td>
+                  <td>N    </td>
+                  <td>78   </td>
+                  <td>275  </td>
+                  <td>597  </td>
+                  <td>401  </td>
+                  <td>215  </td>
+                  <td>1566 </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>20.7 </td>
+                  <td>20.6 </td>
+                  <td>21.4 </td>
+                  <td>19.5 </td>
+                  <td>13.5 </td>
+                  <td>19.2 </td>
+                </tr>
+                <tr>
+                  <td>Always             </td>
+                  <td>N    </td>
+                  <td>69   </td>
+                  <td>242  </td>
+                  <td>590  </td>
+                  <td>499  </td>
+                  <td>512  </td>
+                  <td>1912 </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>18.4 </td>
+                  <td>18.1 </td>
+                  <td>21.1 </td>
+                  <td>24.3 </td>
+                  <td>32.2 </td>
+                  <td>23.5 </td>
+                </tr>
+                <tr>
+                  <td>Most of the time   </td>
+                  <td>N    </td>
+                  <td>101  </td>
+                  <td>475  </td>
+                  <td>1120 </td>
+                  <td>867  </td>
+                  <td>689  </td>
+                  <td>3252 </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>26.9 </td>
+                  <td>35.6 </td>
+                  <td>40.1 </td>
+                  <td>42.2 </td>
+                  <td>43.3 </td>
+                  <td>39.9 </td>
+                </tr>
+                <tr>
+                  <td>Never              </td>
+                  <td>N    </td>
+                  <td>13   </td>
+                  <td>27   </td>
+                  <td>25   </td>
+                  <td>8    </td>
+                  <td>4    </td>
+                  <td>77   </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>3.5  </td>
+                  <td>2.0  </td>
+                  <td>0.9  </td>
+                  <td>0.4  </td>
+                  <td>0.3  </td>
+                  <td>0.9  </td>
+                </tr>
+                <tr>
+                  <td>Some of the time   </td>
+                  <td>N    </td>
+                  <td>115  </td>
+                  <td>317  </td>
+                  <td>458  </td>
+                  <td>280  </td>
+                  <td>171  </td>
+                  <td>1341 </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>30.6 </td>
+                  <td>23.7 </td>
+                  <td>16.4 </td>
+                  <td>13.6 </td>
+                  <td>10.7 </td>
+                  <td>16.5 </td>
+                </tr>
+                <tr>
+                  <td>All                </td>
+                  <td>N    </td>
+                  <td>376  </td>
+                  <td>1336 </td>
+                  <td>2790 </td>
+                  <td>2055 </td>
+                  <td>1591 </td>
+                  <td>8148 </td>
+                </tr>
+                <tr>
+                  <td>                   </td>
+                  <td>% col</td>
+                  <td>100.0</td>
+                  <td>100.0</td>
+                  <td>100.0</td>
+                  <td>100.0</td>
+                  <td>100.0</td>
+                  <td>100.0</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>obs_values <span class="ot">&lt;-</span> <span class="fu">count</span>(nes_clean, attention_to_politics, education, <span class="at">name =</span> <span class="st">&quot;obs_n&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>attention_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(nes_clean, attention_to_politics, <span class="at">name =</span> <span class="st">&quot;attention_total&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>education_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(nes_clean, education, <span class="at">name =</span> <span class="st">&quot;education_total&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>obs_exp_counts <span class="ot">&lt;-</span> attention_totals <span class="sc">|&gt;</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(education_totals) <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(education) <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_n =</span> (education_total <span class="sc">*</span> attention_total) <span class="sc">/</span> <span class="fu">nrow</span>(nes_clean)) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(obs_values, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;attention_to_politics&quot;</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>q2_chi_sq <span class="ot">&lt;-</span> obs_exp_counts <span class="sc">|&gt;</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs_n <span class="sc">-</span> exp_n,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2 =</span> diff<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2_standard =</span> diff_2 <span class="sc">/</span> exp_n) <span class="sc">|&gt;</span> </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">chi_sq =</span> <span class="fu">sum</span>(diff_2_standard)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>q2_chi_sq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 330.7615</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(q2_chi_sq, <span class="at">df =</span> df, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.051168e-60</code></pre>
+</div>
+</div>
+<p><strong>Answer</strong>: The data suggests some support for the hypothesis. Levels of attention in “Most of the time” and “Always” tend to steadily increase from “less than high school credential” to “Graduate degree”, suggesting that attention level slightly increases alongside education.</p>
+<p>The chi square value of 330.7615 produces a p-value of 1.051187^{-60}, indicating that the findings are very unlikely to be withinthe normal distribution of the null and are thus statistically significant. Therefore, we can reject the null hypothesis.</p>
 </section>
 
 </main>
