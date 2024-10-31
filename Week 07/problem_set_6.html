@@ -3744,8 +3744,8 @@ H_0: \mu_{\text{high literacy}} \geq \mu_{\text{low literacy}}
 <pre><code># A tibble: 2 × 4
   lit_rate   n_countries avg_fertility diff_means
   &lt;fct&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;
-1 Lower half           6          5.44       2.65
-2 Upper half          49          2.79      NA   </code></pre>
+1 Lower half           7          5.31       2.61
+2 Upper half          57          2.70      NA   </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate difference of means in sample world</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>diff_means <span class="ot">&lt;-</span> lit_rate_group <span class="sc">|&gt;</span> </span>
@@ -3780,13 +3780,13 @@ H_0: \mu_{\text{high literacy}} \geq \mu_{\text{low literacy}}
     Welch Two Sample t-test
 
 data:  fertility by lit_rate
-t = 5.5229, df = 6.4659, p-value = 0.001157
+t = 6.0747, df = 7.8008, p-value = 0.0003291
 alternative hypothesis: true difference in means between group Lower half and group Upper half is not equal to 0
 95 percent confidence interval:
- 1.498590 3.810138
+ 1.617061 3.610222
 sample estimates:
 mean in group Lower half mean in group Upper half 
-                5.441833                 2.787469 </code></pre>
+                5.310571                 2.696930 </code></pre>
 </div>
 </div>
 <p>The data <em>rejects the null hypothesis</em> and offers an alternative hypothesis stating that the <em>true difference in means between group Lower half and group Upper half is not equal to 0</em>, meaning that they are different. Considering the difference in means and the significant p-value, the data confirms the original hypothesis that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy.</p>
