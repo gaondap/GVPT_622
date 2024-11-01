@@ -25,6 +25,10 @@ I hypothesize that the older someone is, the more they like watching golf. I con
 
 *Points: 4*
 
+::: callout-note
+2/4, your cross tab is the wrong way around.
+:::
+
 Make a cross-tab, by hand, of the relationship between these two variables based on the following (completely made up) data. Make sure that you present both raw counts and the appropriate percentages to examine the relationship.
 
 ```{r}
@@ -57,6 +61,10 @@ datasummary_crosstab(preference ~ age, data = age_golf_df, statistic = 1 ~ 1 + N
 
 *Points: 2*
 
+::: callout-note
+2/2, error carried forward
+:::
+
 Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).
 
 **Answer**: There is weak support for the data. While there is slight positive relationship in older age rangers and "very much" preferencei in playing gold, the sample size is quite small, making it difficult to concretely determine the strength of the relationship.
@@ -64,6 +72,10 @@ Do the data support my hypothesis? Be sure to explain the nature of the relation
 ### Part C
 
 *Points: 2*
+
+::: callout-note
+2/2
+:::
 
 Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work.
 
@@ -95,13 +107,21 @@ print(chi_sq)
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 Using the chi-square statistic that you computed in question 1(c), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?
 
-**Answer**: This chi-square value, with six degrees of freedom, produces a p-value of `r pchisq(chi_sq, df = 6, lower.tail = F)`, meaning the relationship observed is *not* statistically significant. Therefore, we cannot reject the null with 95% confidence. 
+**Answer**: This chi-square value, with six degrees of freedom, produces a p-value of `r pchisq(chi_sq, df = 6, lower.tail = F)`, meaning the relationship observed is *not* statistically significant. Therefore, we cannot reject the null with 95% confidence.
 
 ## Question 2
 
 *Points: 10*
+
+::: callout-note
+10/10
+:::
 
 I hypothesize that people with higher levels of education tend to be more likely to pay higher levels of attention to politics. Use the `nes` dataset from the `poliscidols` package to test my hypothesis. Create a cross-tab examining the relationship between individuals' levels of education (`education`) and the time they spend paying attention to politics (`attention_to_politics`).
 
@@ -156,7 +176,7 @@ df <- (5 - 1) * (5 - 1)
 pchisq(q2_chi_sq, df = df, lower.tail = F)
 
 ```
-**Answer**:
-The data suggests some support for the hypothesis. Levels of attention in "Most of the time" and "Always" tend to steadily increase from "less than high school credential" to "Graduate degree", suggesting that attention level slightly increases alongside education. 
 
-The chi square value of 330.7615 produces a p-value of `r pchisq(330.7615, df = 16, lower.tail = F)`, indicating that the findings are very unlikely to be withinthe  normal distribution of the null and are thus statistically significant. Therefore, we can reject the null hypothesis. 
+**Answer**: The data suggests some support for the hypothesis. Levels of attention in "Most of the time" and "Always" tend to steadily increase from "less than high school credential" to "Graduate degree", suggesting that attention level slightly increases alongside education.
+
+The chi square value of 330.7615 produces a p-value of `r pchisq(330.7615, df = 16, lower.tail = F)`, indicating that the findings are very unlikely to be withinthe normal distribution of the null and are thus statistically significant. Therefore, we can reject the null hypothesis.

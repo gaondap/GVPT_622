@@ -220,12 +220,9 @@ What is a 90% confidence interval around that estimate?
 
 $$
 se(\hat{p})=\sqrt{\frac{\hat{p} - (1-\hat{p})}{n}}
-$$ 
-Once this is resolved, then we can calculate the upper and lower boundaries: 
-$$
+$$ Once this is resolved, then we can calculate the upper and lower boundaries: $$
 \hat{p} \pm z \times \left( \sqrt{\frac{\hat{p} - (1-\hat{p})}{n}} \right)
-$$ 
-A 90% confidence interval requires a z of 1.65. To solve:
+$$ A 90% confidence interval requires a z of 1.65. To solve:
 
 ```{r}
 p_hat <- .379
@@ -267,11 +264,9 @@ Is equal to 40%.
 
 What is the one-tailed p-value and what does it mean?
 
-**Answer**: The equation for a one-tailed p-value would be as follows: 
-$$
+**Answer**: The equation for a one-tailed p-value would be as follows: $$
 Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
-$$ 
-We can then determine the p-value from Z using the `pnorm` function in R and subtracting it from 1.
+$$ We can then determine the p-value from Z using the `pnorm` function in R and subtracting it from 1.
 
 ```{r}
 p_hat_D <- .379
