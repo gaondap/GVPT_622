@@ -54,7 +54,8 @@ age_golf_df <- tibble::tibble(
 
 age_golf_df
 
-datasummary_crosstab(preference ~ age, data = age_golf_df, statistic = 1 ~ 1 + N + Percent("row"))
+datasummary_crosstab(preference ~ age, data = age_golf_df, 
+                     statistic = 1 ~ 1 + N + Percent("col"))
 ```
 
 ### Part B
