@@ -61,7 +61,7 @@ upper_bound <- diff_means + moe
 lower_bound <- diff_means - moe
 ```
 
-We can reject the hypothesis with 90% confidence if UMD freshman study between `r lower_bound` and `r upper_bound` minutes more than UMD sophomores. 
+We can reject the hypothesis with 90% confidence if UMD freshmen study between `r lower_bound` and `r upper_bound` minutes more than UMD sophomores. 
 
 ### Question 2
 
@@ -91,7 +91,36 @@ B.  A sample of 25 with a standard deviation of 10
 C.  A sample of 625 with a standard deviation of 20
 D.  A sample of 100 with a standard deviation of 6
 
-**Answer**: D
+**Answer**: A. We can determine this by calculating the standard error.
+$$
+SE = \frac{\sigma}{\sqrt{n}}
+$$
+```{r}
+# Define the sample sizes and standard deviations
+n_A <- 900
+sd_A <- 15
+
+n_B <- 25
+sd_B <- 10
+
+n_C <- 625
+sd_C <- 20
+
+n_D <- 100
+sd_D <- 6
+
+# Calculate standard errors for each sample
+SE_A <- sd_A / sqrt(n_A)
+SE_B <- sd_B / sqrt(n_B)
+SE_C <- sd_C / sqrt(n_C)
+SE_D <- sd_D / sqrt(n_D)
+
+SE_A
+SE_B
+SE_C
+SE_D
+
+```
 
 ### Question 5
 
@@ -105,7 +134,7 @@ C.  The probability that I draw an ace and then a king in a row from a deck of c
 D.  The probability that I will get a 6 on three subsequent die rolls.
 E.  None of the above – all are independent probabilities.
 
-**Answer**: C
+**Answer**: C. Drawing an ace directly affects the propbability of drawing a king.
 
 ### Question 6
 
@@ -118,7 +147,7 @@ B.  Yes, but only at the 0.10 level (p\<0.10)
 C.  Not at either the 0.05 or the 0.10 level
 D.  There is not enough information to answer this question.
 
-**Answer**: D
+**Answer**: D. This t-static's statistical significance would depend on the degrees of freedem.
 
 ### Question 7
 
@@ -164,7 +193,7 @@ C.  A 99% confidence interval around the sample mean does not include the value 
 D.  None of the above statements are correct
 E.  All of the above statements are correct
 
-**Answer**: A
+**Answer**: B. 
 
 ### Question 10
 
@@ -184,7 +213,7 @@ p_odd <- 3/6
 
 p_odd_greater <- p_odd + p_greater - 1/5
 ```
-The probability that both rolls will be odd or greater than four is `r p_odd_greater = p_odd + p_greater - 1/5`. 
+The probability that both rolls will be odd or greater than four is `r p_odd_greater`. 
 
 #### Part B
 
@@ -204,14 +233,14 @@ tibble::tibble(
 **Answer**:
 ```{r}
 #determine total sample size
-sample_n <- sum(155, 255, 75, 35, 20, 55, 80, 95)
+sample_ft <- sum(155, 255, 75, 35)
 #determine number of full-time 25-29 year-old workers
 ft_2529 <- 75
 
-ft_2529 / sample_n
+ft_2529 / sample_ft
 ```
 
-The probability that a student is in the 25-29 age group given that they are working full time is `r ft_2529 / sample_n`. 
+P(25-29 | Full-time) = `r ft_2529 / sample_ft`. 
 
 ### Question 11
 

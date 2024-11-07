@@ -3327,7 +3327,7 @@ Note
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> diff_means <span class="sc">+</span> moe</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> diff_means <span class="sc">-</span> moe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can reject the hypothesis with 90% confidence if UMD freshman study between 27.6543912 and 126.3456088 minutes more than UMD sophomores.</p>
+<p>We can reject the hypothesis with 90% confidence if UMD freshmen study between 27.6543912 and 126.3456088 minutes more than UMD sophomores.</p>
 </section>
 <section id="question-2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
@@ -3351,7 +3351,46 @@ Note
 <li>A sample of 625 with a standard deviation of 20</li>
 <li>A sample of 100 with a standard deviation of 6</li>
 </ol>
-<p><strong>Answer</strong>: D</p>
+<p><strong>Answer</strong>: A. We can determine this by calculating the standard error. <span class="math display">\[
+SE = \frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the sample sizes and standard deviations</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_A <span class="ot">&lt;-</span> <span class="dv">900</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sd_A <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>n_B <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sd_B <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>n_C <span class="ot">&lt;-</span> <span class="dv">625</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>sd_C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>n_D <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>sd_D <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate standard errors for each sample</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>SE_A <span class="ot">&lt;-</span> sd_A <span class="sc">/</span> <span class="fu">sqrt</span>(n_A)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>SE_B <span class="ot">&lt;-</span> sd_B <span class="sc">/</span> <span class="fu">sqrt</span>(n_B)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>SE_C <span class="ot">&lt;-</span> sd_C <span class="sc">/</span> <span class="fu">sqrt</span>(n_C)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>SE_D <span class="ot">&lt;-</span> sd_D <span class="sc">/</span> <span class="fu">sqrt</span>(n_D)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>SE_A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>SE_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SE_C</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SE_D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
 </section>
 <section id="question-5" class="level3">
 <h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
@@ -3364,7 +3403,7 @@ Note
 <li>The probability that I will get a 6 on three subsequent die rolls.</li>
 <li>None of the above – all are independent probabilities.</li>
 </ol>
-<p><strong>Answer</strong>: C</p>
+<p><strong>Answer</strong>: C. Drawing an ace directly affects the propbability of drawing a king.</p>
 </section>
 <section id="question-6" class="level3">
 <h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
@@ -3376,7 +3415,7 @@ Note
 <li>Not at either the 0.05 or the 0.10 level</li>
 <li>There is not enough information to answer this question.</li>
 </ol>
-<p><strong>Answer</strong>: D</p>
+<p><strong>Answer</strong>: D. This t-static’s statistical significance would depend on the degrees of freedem.</p>
 </section>
 <section id="question-7" class="level3">
 <h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
@@ -3384,9 +3423,9 @@ Note
 <p>I take a sample of 1800 adults and find that 360 of them watched last Monday’s NFL game. What probability represents the complement to the sample proportion of adults who watched the NFL game?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_comp <span class="ot">&lt;-</span> (<span class="dv">1800</span> <span class="sc">-</span> <span class="dv">360</span>) <span class="sc">/</span> <span class="dv">1800</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_comp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p_comp <span class="ot">&lt;-</span> (<span class="dv">1800</span> <span class="sc">-</span> <span class="dv">360</span>) <span class="sc">/</span> <span class="dv">1800</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_comp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8</code></pre>
 </div>
@@ -3419,7 +3458,7 @@ Note
 <li>None of the above statements are correct</li>
 <li>All of the above statements are correct</li>
 </ol>
-<p><strong>Answer</strong>: A</p>
+<p><strong>Answer</strong>: B.</p>
 </section>
 <section id="question-10" class="level3">
 <h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
@@ -3430,24 +3469,24 @@ Note
 <p>If you roll a fair (six-sided) die twice, what is the probability that both rolls will be odd or greater than four?</p>
 <p><strong>Answer</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_greater <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">6</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_odd <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">6</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p_odd_greater <span class="ot">&lt;-</span> p_odd <span class="sc">+</span> p_greater <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_greater <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p_odd <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p_odd_greater <span class="ot">&lt;-</span> p_odd <span class="sc">+</span> p_greater <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The probability that both rolls will be odd or greater than four is .</p>
+<p>The probability that both rolls will be odd or greater than four is 0.6333333.</p>
 </section>
 <section id="part-b" class="level4">
 <h4 class="anchored" data-anchor-id="part-b">Part B</h4>
 <p><em>2 points</em></p>
 <p>The following is a distribution of U.S. college students classified by their age and full- vs. part-time status. Based on these data, what is the probability that a student is in the 25-29 age group, given that (i.e., conditional on knowledge that) the student is full time?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="st">&quot;15 - 19&quot;</span>, <span class="st">&quot;20 - 24&quot;</span>, <span class="st">&quot;25 - 29&quot;</span>, <span class="st">&quot;30+&quot;</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_time =</span> <span class="fu">c</span>(<span class="dv">155</span>, <span class="dv">255</span>, <span class="dv">75</span>, <span class="dv">35</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">part_time =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">55</span>, <span class="dv">80</span>, <span class="dv">95</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="st">&quot;15 - 19&quot;</span>, <span class="st">&quot;20 - 24&quot;</span>, <span class="st">&quot;25 - 29&quot;</span>, <span class="st">&quot;30+&quot;</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_time =</span> <span class="fu">c</span>(<span class="dv">155</span>, <span class="dv">255</span>, <span class="dv">75</span>, <span class="dv">35</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">part_time =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">55</span>, <span class="dv">80</span>, <span class="dv">95</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -3484,17 +3523,17 @@ Note
 </div>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#determine total sample size</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sample_n <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">155</span>, <span class="dv">255</span>, <span class="dv">75</span>, <span class="dv">35</span>, <span class="dv">20</span>, <span class="dv">55</span>, <span class="dv">80</span>, <span class="dv">95</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#determine number of full-time 25-29 year-old workers</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ft_2529 <span class="ot">&lt;-</span> <span class="dv">75</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ft_2529 <span class="sc">/</span> sample_n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#determine total sample size</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sample_ft <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">155</span>, <span class="dv">255</span>, <span class="dv">75</span>, <span class="dv">35</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#determine number of full-time 25-29 year-old workers</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ft_2529 <span class="ot">&lt;-</span> <span class="dv">75</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ft_2529 <span class="sc">/</span> sample_ft</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0974026</code></pre>
+<pre><code>[1] 0.1442308</code></pre>
 </div>
 </div>
-<p>The probability that a student is in the 25-29 age group given that they are working full time is 0.0974026.</p>
+<p>P(25-29 | Full-time) = 0.1442308.</p>
 </section>
 </section>
 <section id="question-11" class="level3">
@@ -3506,23 +3545,23 @@ Note
 <p>Using a SRS of 1211 people, I estimate that the proportion of people living in the South that favor teaching sexual education in public schools is 0.874 and the proportion of people outside of the south that favor teaching sexual education in public schools is 0.906. And, the standard error of the difference (in citizen views about teaching sexual education in public schools) between people living in the south and those not living in the south is 0.015. Give an interval estimate for the difference in the proportion of people favoring sex education in public schools between people who do, and do not, live in the south.</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p_south <span class="ot">&lt;-</span> <span class="fl">0.874</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p_outside <span class="ot">&lt;-</span> <span class="fl">0.906</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fl">0.015</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>diff_p <span class="ot">&lt;-</span> p_outside <span class="sc">-</span> p_south</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#95% confidence interval estimate</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>moe_11 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>lower_bound_11 <span class="ot">&lt;-</span> diff_p <span class="sc">-</span> moe_11</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>upper_bound_11 <span class="ot">&lt;-</span> diff_p <span class="sc">+</span> moe_11</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>lower_bound_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p_south <span class="ot">&lt;-</span> <span class="fl">0.874</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_outside <span class="ot">&lt;-</span> <span class="fl">0.906</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fl">0.015</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>diff_p <span class="ot">&lt;-</span> p_outside <span class="sc">-</span> p_south</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#95% confidence interval estimate</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>moe_11 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>lower_bound_11 <span class="ot">&lt;-</span> diff_p <span class="sc">-</span> moe_11</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>upper_bound_11 <span class="ot">&lt;-</span> diff_p <span class="sc">+</span> moe_11</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>lower_bound_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.00260054</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>upper_bound_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>upper_bound_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.06139946</code></pre>
 </div>
@@ -3546,18 +3585,18 @@ Note
 <p>What is a 95% confidence interval around the sample statistic?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="dv">105</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sd_12 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>n_12 <span class="ot">&lt;-</span> <span class="dv">1600</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>se_12 <span class="ot">&lt;-</span> sd_12 <span class="sc">/</span> <span class="fu">sqrt</span>(n_12)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>z_12 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">lower.tail =</span> T)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>moe_12 <span class="ot">&lt;-</span> z_12 <span class="sc">*</span> se_12</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>lower_bound_12 <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> moe_12</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>upper_bound_12 <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> moe_12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="dv">105</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sd_12 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>n_12 <span class="ot">&lt;-</span> <span class="dv">1600</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>se_12 <span class="ot">&lt;-</span> sd_12 <span class="sc">/</span> <span class="fu">sqrt</span>(n_12)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>z_12 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">lower.tail =</span> T)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>moe_12 <span class="ot">&lt;-</span> z_12 <span class="sc">*</span> se_12</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>lower_bound_12 <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> moe_12</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>upper_bound_12 <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> moe_12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The 95% confidence interval around the sample statistic is between 99.120108 and 110.879892.</p>
 </section>
@@ -3567,9 +3606,9 @@ Note
 <p>When testing the null hypothesis, what is the test statistic associated with the sample statistic?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mew_0 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>t_stat_12 <span class="ot">&lt;-</span> (x_bar <span class="sc">-</span> mew_0) <span class="sc">/</span> se_12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mew_0 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>t_stat_12 <span class="ot">&lt;-</span> (x_bar <span class="sc">-</span> mew_0) <span class="sc">/</span> se_12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The test statistic associated with the sample statistic is 1.6666667.</p>
 </section>
@@ -3579,10 +3618,10 @@ Note
 <p>If using a one-tailed test of the null hypothesis and you are willing to accept a Type-I error rate of 0.05, do the data support my hypothesis? Why or why not?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_12 <span class="ot">&lt;-</span> n_12 <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>p_12 <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_stat_12, <span class="at">df =</span> df_12, <span class="at">lower.tail =</span> F)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_12)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_12 <span class="ot">&lt;-</span> n_12 <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>p_12 <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_stat_12, <span class="at">df =</span> df_12, <span class="at">lower.tail =</span> F)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_12)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.04788827</code></pre>
 </div>
@@ -3610,10 +3649,10 @@ Note
 <section id="question-1-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>gss <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">voted08 =</span> <span class="fu">as.numeric</span>(voted08),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conarmy =</span> <span class="fu">as.numeric</span>(conarmy)) <span class="sc">|&gt;</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(voted08), <span class="sc">!</span><span class="fu">is.na</span>(conarmy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>gss <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">voted08 =</span> <span class="fu">as.numeric</span>(voted08),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conarmy =</span> <span class="fu">as.numeric</span>(conarmy)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(voted08), <span class="sc">!</span><span class="fu">is.na</span>(conarmy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>8 points total</em></p>
 <p>I hypothesize that, among only those that were eligible to vote, people with greater confidence in the U.S. military were more likely to turnout to vote in the 2008 presidential election. Use data from the General Social Survey (i.e., the <code>gss</code> dataset) to test my hypothesis (the unit of analysis is the individual survey respondent). Specifically, use the following variables: <code>conarmy</code> (1 = a “great deal” of confidence; 2 = “only some” confidence; 3 = “hardly any”); and <code>vote08</code> (1 = did not vote; 2 = voted). Answer the following questions.</p>
@@ -3623,18 +3662,18 @@ Note
 <p>Complete a cross-tab and interpret the results. Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(voted08 <span class="sc">~</span> conarmy, <span class="at">data =</span> gss, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;col&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(voted08 <span class="sc">~</span> conarmy, <span class="at">data =</span> gss, </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;col&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
-      function styleCell_wnxmjxawoprjnzed1iru(i, j, css_id) {
-        var table = document.getElementById("tinytable_wnxmjxawoprjnzed1iru");
+      function styleCell_6ri3l7hujskxquvs64ev(i, j, css_id) {
+        var table = document.getElementById("tinytable_6ri3l7hujskxquvs64ev");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_wnxmjxawoprjnzed1iru');
+        var table = document.getElementById('tinytable_6ri3l7hujskxquvs64ev');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -3642,8 +3681,8 @@ Note
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_wnxmjxawoprjnzed1iru(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_wnxmjxawoprjnzed1iru");
+      function spanCell_6ri3l7hujskxquvs64ev(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_6ri3l7hujskxquvs64ev");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -3669,58 +3708,58 @@ Note
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 0, 'tinytable_css_idzouvp5haqbxt9v0udyhl') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 1, 'tinytable_css_idzouvp5haqbxt9v0udyhl') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 2, 'tinytable_css_idb1ibye33aoo70gcmzt5g') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 3, 'tinytable_css_idb1ibye33aoo70gcmzt5g') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 4, 'tinytable_css_idb1ibye33aoo70gcmzt5g') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(0, 5, 'tinytable_css_idb1ibye33aoo70gcmzt5g') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(1, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(2, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(3, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(4, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(5, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 0, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 1, 'tinytable_css_idiuzr5qjfyqu589myvqzw') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 2, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 3, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 4, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
-window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 5, 'tinytable_css_idmo9yc981pvxsnhvnaeeo') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 0, 'tinytable_css_idgxo3besfrwmit0qs02r3') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 1, 'tinytable_css_idgxo3besfrwmit0qs02r3') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 2, 'tinytable_css_id8nom0rxetz689xwmsj5u') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 3, 'tinytable_css_id8nom0rxetz689xwmsj5u') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 4, 'tinytable_css_id8nom0rxetz689xwmsj5u') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(0, 5, 'tinytable_css_id8nom0rxetz689xwmsj5u') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(1, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(2, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(3, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(4, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(5, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 0, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 1, 'tinytable_css_idaxbpn94oyak647zds7r4') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 2, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 3, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 4, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
+window.addEventListener('load', function () { styleCell_6ri3l7hujskxquvs64ev(6, 5, 'tinytable_css_id50tdvvb3yqls9tdcqlot') })
     </script>
 
     <style>
-.table td.tinytable_css_idzouvp5haqbxt9v0udyhl, .table th.tinytable_css_idzouvp5haqbxt9v0udyhl { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idb1ibye33aoo70gcmzt5g, .table th.tinytable_css_idb1ibye33aoo70gcmzt5g { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idiuzr5qjfyqu589myvqzw, .table th.tinytable_css_idiuzr5qjfyqu589myvqzw { text-align: left; }
-.table td.tinytable_css_idmo9yc981pvxsnhvnaeeo, .table th.tinytable_css_idmo9yc981pvxsnhvnaeeo { text-align: right; }
+.table td.tinytable_css_idgxo3besfrwmit0qs02r3, .table th.tinytable_css_idgxo3besfrwmit0qs02r3 { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_id8nom0rxetz689xwmsj5u, .table th.tinytable_css_id8nom0rxetz689xwmsj5u { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idaxbpn94oyak647zds7r4, .table th.tinytable_css_idaxbpn94oyak647zds7r4 { text-align: left; }
+.table td.tinytable_css_id50tdvvb3yqls9tdcqlot, .table th.tinytable_css_id50tdvvb3yqls9tdcqlot { text-align: right; }
 </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_wnxmjxawoprjnzed1iru" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_6ri3l7hujskxquvs64ev" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -3795,26 +3834,26 @@ window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 
 <p><em>3 points</em></p>
 <p>Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work. <strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>obs_values <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, conarmy, voted08, <span class="at">name =</span> <span class="st">&quot;obs_n&quot;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>conarmy_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, conarmy, <span class="at">name =</span> <span class="st">&quot;conarmy_total&quot;</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>voted08_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, voted08, <span class="at">name =</span> <span class="st">&quot;voted08_total&quot;</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>obs_exp_counts <span class="ot">&lt;-</span> voted08_totals <span class="sc">|&gt;</span> </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(conarmy_totals) <span class="sc">|&gt;</span> </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(conarmy) <span class="sc">|&gt;</span> </span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_n =</span> (conarmy_total <span class="sc">*</span> voted08_total) <span class="sc">/</span> <span class="fu">nrow</span>(gss)) <span class="sc">|&gt;</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(obs_values, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;conarmy&quot;</span>, <span class="st">&quot;voted08&quot;</span>))</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>chi_sq <span class="ot">&lt;-</span> obs_exp_counts <span class="sc">|&gt;</span> </span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs_n <span class="sc">-</span> exp_n,</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2 =</span> diff<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2_standard =</span> diff_2 <span class="sc">/</span> exp_n) <span class="sc">|&gt;</span> </span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">chi_sq =</span> <span class="fu">sum</span>(diff_2_standard)) <span class="sc">|&gt;</span> </span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>chi_sq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>obs_values <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, conarmy, voted08, <span class="at">name =</span> <span class="st">&quot;obs_n&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>conarmy_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, conarmy, <span class="at">name =</span> <span class="st">&quot;conarmy_total&quot;</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>voted08_totals <span class="ot">&lt;-</span> <span class="fu">count</span>(gss, voted08, <span class="at">name =</span> <span class="st">&quot;voted08_total&quot;</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>obs_exp_counts <span class="ot">&lt;-</span> voted08_totals <span class="sc">|&gt;</span> </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_grid</span>(conarmy_totals) <span class="sc">|&gt;</span> </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(conarmy) <span class="sc">|&gt;</span> </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exp_n =</span> (conarmy_total <span class="sc">*</span> voted08_total) <span class="sc">/</span> <span class="fu">nrow</span>(gss)) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(obs_values, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;conarmy&quot;</span>, <span class="st">&quot;voted08&quot;</span>))</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>chi_sq <span class="ot">&lt;-</span> obs_exp_counts <span class="sc">|&gt;</span> </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> obs_n <span class="sc">-</span> exp_n,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2 =</span> diff<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">diff_2_standard =</span> diff_2 <span class="sc">/</span> exp_n) <span class="sc">|&gt;</span> </span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">chi_sq =</span> <span class="fu">sum</span>(diff_2_standard)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>chi_sq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.007282</code></pre>
 </div>
@@ -3827,9 +3866,9 @@ window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 
 <p>Using the chi-square statistic that you computed in question 1(b), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_01 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>p_value_01 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_sq, <span class="at">df =</span> df_01, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_01 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>p_value_01 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_sq, <span class="at">df =</span> df_01, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A chi-square of 6.0072815 with 2 degrees of freedom produces a p-value of 0.0496061, which means it is statistically significant at the 0.05 level. We then can reject the null hypothesis that there exists no relationship between these two variables with 95% confidence.</p>
 </section>
@@ -3837,15 +3876,15 @@ window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 
 <section id="question-2-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2-1">Question 2</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nes <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>nes <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">envir_drill =</span> <span class="fu">factor</span>(envir_drill, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;1. Favor&quot;</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                                             <span class="st">&quot;3. Neither favor nor oppose&quot;</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                                             <span class="st">&quot;2. Oppose&quot;</span>)),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">envir_drill =</span> <span class="fu">as.numeric</span>(envir_drill),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">pid_x =</span> <span class="fu">as.numeric</span>(pid_x),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">relig_pray =</span> <span class="fu">as.numeric</span>(relig_pray),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">voted2008 =</span> <span class="fu">as.numeric</span>(voted2008)) <span class="sc">|&gt;</span> </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(envir_drill), <span class="sc">!</span><span class="fu">is.na</span>(pid_x), <span class="sc">!</span><span class="fu">is.na</span>(relig_pray), <span class="sc">!</span><span class="fu">is.na</span>(voted2008))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>nes <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>nes <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">envir_drill =</span> <span class="fu">factor</span>(envir_drill, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;1. Favor&quot;</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                                                             <span class="st">&quot;3. Neither favor nor oppose&quot;</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                                                             <span class="st">&quot;2. Oppose&quot;</span>)),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">envir_drill =</span> <span class="fu">as.numeric</span>(envir_drill),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">pid_x =</span> <span class="fu">as.numeric</span>(pid_x),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">relig_pray =</span> <span class="fu">as.numeric</span>(relig_pray),</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">voted2008 =</span> <span class="fu">as.numeric</span>(voted2008)) <span class="sc">|&gt;</span> </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(envir_drill), <span class="sc">!</span><span class="fu">is.na</span>(pid_x), <span class="sc">!</span><span class="fu">is.na</span>(relig_pray), <span class="sc">!</span><span class="fu">is.na</span>(voted2008))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>8 points total</em></p>
 <p>I hypothesize that citizens who do not support increased U.S. offshore drilling are more conservative than those who do not. Use data from the <code>nes</code> dataset to test my hypothesis (the unit of analysis is the individual survey respondent). Specifically, use the following variables: <code>envir_drill</code> (1 = “favor”; 2 = “neither favor nor oppose”; 3 = “oppose”); and <code>pid_x</code> (higher values represent less liberalism, or more conservatism). Answer the following questions.</p>
@@ -3855,14 +3894,14 @@ window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 
 <p>Using these data, what is the point estimate for the mean conservatism/liberalism score among those that oppose drilling? What is the point estimate for the mean conservatism/liberalism score among those that are in favor of drilling?</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>drill_group <span class="ot">&lt;-</span> nes <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(envir_drill) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_respondents =</span> <span class="fu">n</span>(), </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">avg_pid_x =</span> <span class="fu">mean</span>(pid_x),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_pid_x =</span> <span class="fu">sd</span>(pid_x)) <span class="sc">|&gt;</span> </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff_means =</span> avg_pid_x <span class="sc">-</span> <span class="fu">lead</span>(avg_pid_x))</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>drill_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>drill_group <span class="ot">&lt;-</span> nes <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(envir_drill) <span class="sc">|&gt;</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_respondents =</span> <span class="fu">n</span>(), </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">avg_pid_x =</span> <span class="fu">mean</span>(pid_x),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_pid_x =</span> <span class="fu">sd</span>(pid_x)) <span class="sc">|&gt;</span> </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff_means =</span> avg_pid_x <span class="sc">-</span> <span class="fu">lead</span>(avg_pid_x))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>drill_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   envir_drill n_respondents avg_pid_x sd_pid_x diff_means
@@ -3882,23 +3921,23 @@ window.addEventListener('load', function () { styleCell_wnxmjxawoprjnzed1iru(6, 
 t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x_1 <span class="ot">&lt;-</span> <span class="fl">4.180296</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sd_1 <span class="ot">&lt;-</span> <span class="fl">2.188701</span>    </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>n_1 <span class="ot">&lt;-</span> <span class="dv">3045</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>x_2 <span class="ot">&lt;-</span> <span class="fl">2.638704</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>sd_2 <span class="ot">&lt;-</span> <span class="fl">1.689683</span>    </span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>n_2 <span class="ot">&lt;-</span> <span class="dv">1049</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> n_2 <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>t_stat_01 <span class="ot">&lt;-</span> (x_1 <span class="sc">-</span> x_2) <span class="sc">/</span> <span class="fu">sqrt</span>((sd_1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n_1)<span class="sc">+</span>(sd_2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n_2))</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>t_stat_01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x_1 <span class="ot">&lt;-</span> <span class="fl">4.180296</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sd_1 <span class="ot">&lt;-</span> <span class="fl">2.188701</span>    </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>n_1 <span class="ot">&lt;-</span> <span class="dv">3045</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>x_2 <span class="ot">&lt;-</span> <span class="fl">2.638704</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>sd_2 <span class="ot">&lt;-</span> <span class="fl">1.689683</span>    </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>n_2 <span class="ot">&lt;-</span> <span class="dv">1049</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> n_2 <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>t_stat_01 <span class="ot">&lt;-</span> (x_1 <span class="sc">-</span> x_2) <span class="sc">/</span> <span class="fu">sqrt</span>((sd_1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n_1)<span class="sc">+</span>(sd_2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n_2))</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>t_stat_01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 23.52309</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>p_value_1 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(t_stat_01, <span class="at">df =</span> df, <span class="at">lower.tail =</span> F)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">percent</span>(p_value_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p_value_1 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(t_stat_01, <span class="at">df =</span> df, <span class="at">lower.tail =</span> F)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">percent</span>(p_value_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;0%&quot;</code></pre>
 </div>
@@ -3916,22 +3955,22 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 <p>Using these data, what is the point estimate for the proportion of respondents that voted (i.e., turnout rate), among citizens expressing that religion is not important? What is the point estimate for the proportion of respondents that voted, among citizens expressing that religion matters a great deal?</p>
 <p><strong>Answer</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>nes_2 <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>nes <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig_pray =</span> <span class="fu">as.character</span>(relig_pray),</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">voted2008 =</span> <span class="fu">as.character</span>(voted2008))</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(voted2008 <span class="sc">~</span> relig_pray, <span class="at">data =</span> nes_2,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;col&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>nes_2 <span class="ot">&lt;-</span> poliscidata<span class="sc">::</span>nes <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig_pray =</span> <span class="fu">as.character</span>(relig_pray),</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">voted2008 =</span> <span class="fu">as.character</span>(voted2008))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_crosstab</span>(voted2008 <span class="sc">~</span> relig_pray, <span class="at">data =</span> nes_2,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">statistic =</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> N <span class="sc">+</span> <span class="fu">Percent</span>(<span class="st">&quot;col&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
-      function styleCell_jc6p8kpx21zwdlyk144m(i, j, css_id) {
-        var table = document.getElementById("tinytable_jc6p8kpx21zwdlyk144m");
+      function styleCell_jf78l65usql4g57nxlki(i, j, css_id) {
+        var table = document.getElementById("tinytable_jf78l65usql4g57nxlki");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_jc6p8kpx21zwdlyk144m');
+        var table = document.getElementById('tinytable_jf78l65usql4g57nxlki');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -3939,8 +3978,8 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_jc6p8kpx21zwdlyk144m(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_jc6p8kpx21zwdlyk144m");
+      function spanCell_jf78l65usql4g57nxlki(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_jf78l65usql4g57nxlki");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -3966,72 +4005,72 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 0, 'tinytable_css_idvg5manky1r4n4u13l1qa') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 1, 'tinytable_css_idvg5manky1r4n4u13l1qa') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 2, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 3, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 4, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 5, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 6, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(0, 7, 'tinytable_css_idqbfisk7u08lot5aehvtp') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(1, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(2, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(3, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(4, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(5, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 0, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 1, 'tinytable_css_idm8e6fs70neovdsp6dagt') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 2, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 3, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 4, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 5, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 6, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
-window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 7, 'tinytable_css_idh0xnblisqgfh57lb83ek') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 0, 'tinytable_css_idarj2470xwnjdonusq71z') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 1, 'tinytable_css_idarj2470xwnjdonusq71z') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 2, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 3, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 4, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 5, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 6, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(0, 7, 'tinytable_css_idtrerobafr2ktdcxqw1au') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(1, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(2, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(3, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(4, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(5, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 0, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 1, 'tinytable_css_idoliv6qjbztarcre9shtz') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 2, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 3, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 4, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 5, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 6, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
+window.addEventListener('load', function () { styleCell_jf78l65usql4g57nxlki(6, 7, 'tinytable_css_idxg6hmz58bj73nka0m27j') })
     </script>
 
     <style>
-.table td.tinytable_css_idvg5manky1r4n4u13l1qa, .table th.tinytable_css_idvg5manky1r4n4u13l1qa { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idqbfisk7u08lot5aehvtp, .table th.tinytable_css_idqbfisk7u08lot5aehvtp { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_idm8e6fs70neovdsp6dagt, .table th.tinytable_css_idm8e6fs70neovdsp6dagt { text-align: left; }
-.table td.tinytable_css_idh0xnblisqgfh57lb83ek, .table th.tinytable_css_idh0xnblisqgfh57lb83ek { text-align: right; }
+.table td.tinytable_css_idarj2470xwnjdonusq71z, .table th.tinytable_css_idarj2470xwnjdonusq71z { text-align: left; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idtrerobafr2ktdcxqw1au, .table th.tinytable_css_idtrerobafr2ktdcxqw1au { text-align: right; border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_idoliv6qjbztarcre9shtz, .table th.tinytable_css_idoliv6qjbztarcre9shtz { text-align: left; }
+.table td.tinytable_css_idxg6hmz58bj73nka0m27j, .table th.tinytable_css_idxg6hmz58bj73nka0m27j { text-align: right; }
 </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_jc6p8kpx21zwdlyk144m" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_jf78l65usql4g57nxlki" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -4121,29 +4160,29 @@ window.addEventListener('load', function () { styleCell_jc6p8kpx21zwdlyk144m(6, 
 <p>Evaluate the null hypothesis that there is no difference in the proportion of voters (i.e., turnout rate) among citizens expressing that religion is not important vs. those reporting that religion matters a great deal. Do the data support my hypothesis? Why or why not? Be sure to show all work necessary to answer the question by hand (i.e., you may only use R to the extent that is absolutely necessary to complete the question; otherwise, you must show how you would answer the question by hand).</p>
 <p><strong>Answer</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#assign given variables</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>p_important <span class="ot">&lt;-</span> .<span class="dv">821</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>p_not_important <span class="ot">&lt;-</span> .<span class="dv">719</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#determine sample sizes </span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>n_important <span class="ot">&lt;-</span> <span class="dv">1761</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>n_not_important <span class="ot">&lt;-</span> <span class="dv">955</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate difference</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>diff_prop <span class="ot">&lt;-</span> p_important <span class="sc">-</span> p_not_important</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate pooled p</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> ((p_important <span class="sc">*</span> n_important) <span class="sc">+</span> (p_not_important <span class="sc">*</span> n_not_important)) <span class="sc">/</span> (n_important <span class="sc">+</span> n_not_important)</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate standard error</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>se_03 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">/</span> n_important) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">/</span> n_not_important)))</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate z-score</span></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> diff_prop <span class="sc">/</span> se_03</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>p_value_03 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(z_score, <span class="at">lower.tail =</span> F)</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>p_value_03</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#assign given variables</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>p_important <span class="ot">&lt;-</span> .<span class="dv">821</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>p_not_important <span class="ot">&lt;-</span> .<span class="dv">719</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#determine sample sizes </span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>n_important <span class="ot">&lt;-</span> <span class="dv">1761</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>n_not_important <span class="ot">&lt;-</span> <span class="dv">955</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate difference</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>diff_prop <span class="ot">&lt;-</span> p_important <span class="sc">-</span> p_not_important</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate pooled p</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> ((p_important <span class="sc">*</span> n_important) <span class="sc">+</span> (p_not_important <span class="sc">*</span> n_not_important)) <span class="sc">/</span> (n_important <span class="sc">+</span> n_not_important)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate standard error</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>se_03 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">*</span> ((<span class="dv">1</span> <span class="sc">/</span> n_important) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">/</span> n_not_important)))</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate z-score</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> diff_prop <span class="sc">/</span> se_03</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>p_value_03 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(z_score, <span class="at">lower.tail =</span> F)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>p_value_03</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.425783e-10</code></pre>
 </div>
