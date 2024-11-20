@@ -22,17 +22,90 @@ For the following regression equation, $\hat{Y} = 8.5 + 6x + \epsilon$, the stan
 
 Is $\beta_1$ statistically significant at the 0.05-level with a two-tailed test? Why or why not?
 
+**Answer**:
+First, we have to determine the t-statistic for $\beta_1$.
+$$
+t = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}
+$$
+
+```{r}
+beta_1 <- 6
+se_beta_1 <- 3.5
+tstat_beta_1 <- beta_1 / se_beta_1
+
+tstat_beta_1
+```
+We can derive also 95% confidence interval after finding the critical value, $t_{critical}$. 
+```{r}
+df <- 2000 - 1 - 1
+t_critical <- qt(0.025, df = df, lower.tail = F)
+
+upper_ci <- beta_1 + t_critical * se_beta_1
+
+lower_ci <- beta_1 - t_critical * se_beta_1
+
+upper_ci
+lower_ci
+```
+
+It appears that the value of $\beta_1$ falls within this 95% confidence interval, meaning it is *not* statistically significant at the 0.05 level. Finding the p-value of $t_{\beta_1}$ should verify this.
+
+```{r}
+p_beta_1 <- 2 * pt(tstat_beta_1, df = df, lower.tail = F)
+```
+
+The t-statistic of `r tstat_beta_1` produces a p of `r p_beta_1`. This means that $\beta_1$ is not significant at the 0.05 level since $p > 0.05$.
+
 ## Question 2
 
 *Points: 5*
 
 Suppose you estimate an OLS regression and retrieve a $R^2$ value of 0.45. If the Total Sum of Squares (TSS) from that regression equals 4,700, what is the value for the Residual Sum of Squares (RSS)?
 
+**Answer**:
+We can find the RSS by first solving for the ESS through the $R^2$ formula:
+$$
+R^2 = \frac{ESS}{TSS}
+$$
+```{r}
+r_squared <- 0.45
+TSS <- 4700
+ESS <- r_squared * TSS
+ESS
+```
+We can then plug both values into the following equation to determine the RSS:
+$$
+{RSS} = {ESS} + {TSS}
+$$
+```{r}
+RSS <- ESS + TSS
+RSS
+```
+RSS = `r RSS`.
 ## Question 3
 
 *Points: 5*
 
 Suppose you estimate a bivariate regression with a sample size of 102 and obtain a regression coefficient ($\beta_1$) of 5.0. What is the largest standard error that $\beta_1$ could have and still be statistically significant (i.e., reject the null hypothesis of no relationship) at the 0.05 level with a one-tailed test?
+
+**Answer**:
+First, we have to determine the critical value according to the 0.05 significance level. We can find this using the degrees of freedom.
+```{r}
+df_03 <- 102 - 1 - 1
+t_critical_03 <- qt(0.05, df = df_03, lower.tail = F)
+t_critical_03
+```
+
+We can reconfigure the t-statistic forula to solve for the critical standard error using this critical value.
+$$
+SE_{critical} = \frac{\beta_1}{t_{critical}}
+$$
+```{r}
+beta_1 <- 5
+se_critical <- beta_1 / t_critical_03
+se_critical
+```
+The largest standard error that $\beta_1$ could have and still be statistically significant (i.e., reject the null hypothesis of no relationship) at the 0.05 level with a one-tailed test is `r se_critical`.
 
 ## Question 4
 
@@ -50,8 +123,38 @@ Using the `gapminder_df` data set read in above, produce a scatterplot of the va
 The variable `gdp_per_cap` measures each country's GDP per capita (representing their individual wealth), and `life_exp` indicates the number of years individuals within that country born that year are expected to live (representing their health).
 :::
 
+**Answer**:
+```{r}
+library(tidyverse)
+library(broom)
+library(modelsummary)
+library(ggdist)
+
+ggplot(gapminder_df, aes(x = gdp_per_cap, y = life_exp)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = F) + 
+  theme_minimal() +
+  labs(title = "Relationship between GDP per capita and life expectancy",
+       x = "GDP per Capita (USD)",
+       y = "Life expectancy in years")
+```
+Generally, GDP per capita has been positively associated with increasing life expectancy. Countries with higher GDP per capita tend to have longer life expectancies. There are a few outlier cases which have abnormally high GDP per capita values with life expectancies hovering slightly above the 80s, similar to many countries at lower GDP per capita ranges. 
+
 ## Question 5
 
 *Points: 10*
 
 Estimate a bivariate regression with `life_exp` as the dependent variable and `gdp_per_cap` as the independent variable and report the results in a professionally formatted table. In as much detail as possible, describe (and interpret) the regression results.
+
+**Answer**:
+```{r}
+regression_05 <- lm(life_exp ~ gdp_per_cap, data = gapminder_df)
+summary(regression_05)
+modelsummary(regression_05,
+             coef_rename = c("gdp_per_cap" = "GDP per capita (USD)"),
+             statistic = c("std.error", "p.value"))
+```
+
+The intercept suggests that a country with 0 GDP per capita will *on average* be associated with a life expectancy of 69.59 years. Additionally, each 1 point increase in GDP per capita is associated with a 1.953e-04 increase in life expectancy *on average*. 
+The t-value of 138.46 indicates that these observed values are highly improbable under the null environment and this is reflected in the extremely low p-value. Therefore, this finding is statistically significant. 
+Although the coefficient is minuscule, the data suggests support for a positive relationship between GDP per capita and life expectancy. 
