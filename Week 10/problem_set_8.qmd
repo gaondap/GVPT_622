@@ -195,15 +195,15 @@ Need to identify that the relationship is not linear.
 Should only fit linear models to estimate linear relationships. Better to use the logged GDP per capita.
 :::
 
-Estimate a bivariate regression with `life_exp` as the dependent variable and `gdp_per_cap` as the independent variable and report the results in a professionally formatted table. In as much detail as possible, describe (and interpret) the regression results.
+Estimate a bivariate regression with `life_exp` as the dependent variable and `gdp_per_cap` as the independent variable and report the results in a professionally formatted table. In as much detail as possible, describe (and interpret) the regression results. **This relationship is not linear.**
 
 **Answer**:
 
 ```{r}
-regression_05 <- lm(life_exp ~ gdp_per_cap, data = gapminder_df)
+regression_05 <- lm(life_exp ~ log(gdp_per_cap), data = gapminder_df)
 summary(regression_05)
 modelsummary(regression_05,
-             coef_rename = c("gdp_per_cap" = "GDP per capita (USD)"),
+             coef_rename = c("log(gdp_per_cap)" = "Logged GDP per capita (USD)"),
              statistic = c("std.error", "p.value"))
 ```
 
