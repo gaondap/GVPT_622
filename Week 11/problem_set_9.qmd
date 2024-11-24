@@ -21,6 +21,7 @@ library(broom)
 library(modelsummary)
 library(ggdist)
 library(marginaleffects)
+library(poliscidata)
 ```
 
 
@@ -62,12 +63,15 @@ CA_raw <- read_csv(
 #design multivariate regression model
 CA_multi <- lm(vote ~ nonSouth + edr + pcthsg, data = CA_raw)
 
+#summarize results
+summary(CA_multi)
+
 #format summary table
 modelsummary(CA_multi, 
              coef_rename = c(vote = "State turnout rate",
                              nonSouth = "Southern state",
-                             pcthsg = "% of state population that graduated high school",
-                             edr = "State with election-day registration"),
+                             pcthsg = "Graduated high school (Pop. %)",
+                             edr = "Election-day registration"),
              statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
 
 #plot effect pcthsg on vote with CI
@@ -75,8 +79,10 @@ plot_predictions(CA_multi, condition = "pcthsg") +
   theme_minimal() +
   labs(x = "Percentage of state population that graduated high school",
        y = "State turnout rate",
-       title = "Predicted values for the effect of high school graduation rate on state turnout rate")
+       title = "Predicted values for the effect of HS graduation rate on state turnout rate")
 ```
+
+*No, it is not meaningful to interpret the constant value of* `pcthsg` *on its own.* This is because the constant term indicates the point where the regression intercepts the Y-axis. In the terms of this model, the constant value represents the average state turnout rate for a state in which zero percent of the population graduate high school. This data offers no inferential value given that a U.S. state with no high school graduates does not exist. However, in the figure plotting the predicted values for the relationship between `pcthsg` and `vote`, the intercept begins somewhere in the low-40 values of the X-axis, which is far more realistic than a constant which begins at 0. 
 
 ## Question 3
 
@@ -84,8 +90,12 @@ plot_predictions(CA_multi, condition = "pcthsg") +
 
 Using the regression results from the previous question, evaluate the null hypothesis that the effects (i.e., regression coefficients) of `nonSouth` and `pcthsg` are jointly equal to zero. Can you reject the null hypothesis? Be sure to demonstrate how you reached a definitive conclusion.
 
+**Answer**:
+*Yes, we can* ***reject*** *the null hypothesis*. 
+
 ## Question 4
 
 *Points: 15*
 
 Using one of the other data sets available in the `poliscidata` package pick one dependent variable and two or more independent variables. Run a regression of the dependent variable on the independent variables. In your answer, describe why you picked the variables you did, produce a professionally formatted results table, and describe your statistical and substantive findings.
+**Answer**:
