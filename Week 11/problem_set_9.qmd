@@ -15,6 +15,14 @@ execute:
 Please upload your completed assignment to the ELMs course site (under the assignments menu). Remember to include an annotated script file for all work with R and show your math for all other problems (if applicable, or necessary). Please also upload your completed assignment to the Github repository that you have shared with us. *We should be able to run your script with no errors.*
 
 **Total points: 40**
+```{r}
+library(tidyverse)
+library(broom)
+library(modelsummary)
+library(ggdist)
+library(marginaleffects)
+```
+
 
 ## Question 1
 
@@ -23,6 +31,9 @@ Please upload your completed assignment to the ELMs course site (under the assig
 Table 1 below reports the results from two regression models. In Model 1 in Table 1 $Y$ is regressed on $X_1$ and, in Model 2, $Y$ is regressed on both $X_1$ and $X_2$. Why might $X_1$ be statistically significant at conventional levels in Model 1 but statistically insignificant in Model 2? Be as specific as possible.
 
 ![](images/ps9.png){fig-align="center"}
+
+**Answer**:
+Firstly, this shift in significance suggests that the relationship between $X_1$ and $Y$ is primarily driven by $X_2$. The coefficient for $X_1$ decreases with the introduction of $X_2$ in the second model, indicating that the effects of $X_1$ on $Y$ are smaller when holding all values of $X_2$ constant. Simply put, $X_2$'s significance and larger coefficient gives it more explanatory value. Finally, these changes in $X_1$'s coefficient and significance level may also point to a potential correlation between $X_1$ and $X_2$.
 
 ## Question 2
 
@@ -41,6 +52,31 @@ Also, create a figure to display the predicted values (with confidence intervals
 
 `edr` is a dummy variable equal to `1` for states that used election-day registration and a `0` for states without election-day registration.
 :::
+
+**Answer**:
+```{r}
+#import data
+CA_raw <- read_csv(
+  here::here("/Users/crankadelia/Documents/GVPT_622/Week 11/censusAggregate-1.csv")) 
+
+#design multivariate regression model
+CA_multi <- lm(vote ~ nonSouth + edr + pcthsg, data = CA_raw)
+
+#format summary table
+modelsummary(CA_multi, 
+             coef_rename = c(vote = "State turnout rate",
+                             nonSouth = "Southern state",
+                             pcthsg = "% of state population that graduated high school",
+                             edr = "State with election-day registration"),
+             statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
+
+#plot effect pcthsg on vote with CI
+plot_predictions(CA_multi, condition = "pcthsg") +
+  theme_minimal() +
+  labs(x = "Percentage of state population that graduated high school",
+       y = "State turnout rate",
+       title = "Predicted values for the effect of high school graduation rate on state turnout rate")
+```
 
 ## Question 3
 
