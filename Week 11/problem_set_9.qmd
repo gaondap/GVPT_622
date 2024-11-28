@@ -91,11 +91,81 @@ plot_predictions(CA_multi, condition = "pcthsg") +
 Using the regression results from the previous question, evaluate the null hypothesis that the effects (i.e., regression coefficients) of `nonSouth` and `pcthsg` are jointly equal to zero. Can you reject the null hypothesis? Be sure to demonstrate how you reached a definitive conclusion.
 
 **Answer**:
-*Yes, we can* ***reject*** *the null hypothesis*. 
+*Yes, we can* ***reject*** *the null hypothesis*. Interpreting the coefficients individually allows us to come to this conclusion.
+
+For `nonSouth`, the data suggests that being a non-Southern state is associated with an increase in state turnout rate of 5.55 percentage points, on average and holding all else constant. The relationship between `nonSouth` and `vote` is highly significant given its extremely low p-value (p =`r 1.68e-11`). Therefore, we can reject the null.
+
+Similarly, for `pcthsg`, the results suggest that a one point increase in the percentage of high school graduates within a state's population is associated with an increase in its state turnout rate of 0.101 percentage points, on average and holding all else constant. The relationship between `pcthsg` and `vote` is significant at the .001 level, meaning we can reject the null. 
 
 ## Question 4
 
 *Points: 15*
 
 Using one of the other data sets available in the `poliscidata` package pick one dependent variable and two or more independent variables. Run a regression of the dependent variable on the independent variables. In your answer, describe why you picked the variables you did, produce a professionally formatted results table, and describe your statistical and substantive findings.
+
 **Answer**:
+For my research question, I ask whether authoritative familial leadership translates into authoritarian politics. This question is an extension of work previously done by Cohen and Smith (2016) based on Latin America. I hypothesize that people who favor obedience and punitiveness will score higher on the authoritarian scale. 
+
+I will use the `gss` dataset for this design. I operationalize my independent variable, authoritative familial leadership, using the `obey2` and `spanking` variables. `Obey2` contains answers to the survey question "obedience and respect for authority are the most important virtues children should learn" organized as "less important" and "more important." The data `Spanking` contains answers gauging wether respondents agree to the practice spanking organized on a likert scale from strongly disagree (0) to strongly agree (4).
+
+I use social conservatism (`social_cons3`) and party identification (`party_id3`) as my control variables. I choose these two because they are encompassing and holistic political ideologies rather than familial and private practices of power. In this way, we can evaluate how personal behaviors may translate into political beliefs in isolation. 
+
+Finally, my dependent variable will be score on the authoritarianism scale (`authoritarianism`). 
+::: callout-note
+As a side note, I could not find how "authoritarianism" variable was operationalized. None of the GSS codebooks I found mentioned an authoritarianism variable despite it being available here. I assumed the values "0", "8", and "9" were assigned to "N/A", "Refused", and "Don't know" respectively because most of the other scale variables were organized in the same way. I also assume that the higher value on this scale, the *more* authoritarian. I could be wrong but my analysis will proceed under this assumption.
+:::
+
+```{r}
+# Organize dataset
+gss_df <- poliscidata::gss |> 
+  select(authoritarianism, obey2, spanking, social_cons3, partyid_3) |> 
+  filter(!spanking %in% c("Refused", "Don't know"),
+         !obey2 %in% c("Refused", "Don't know"),
+         !partyid_3 %in% c("Refused", "Don't know"),
+         !authoritarianism %in% c("0", "8", "9"),
+         !is.na(authoritarianism),
+         !is.na(obey2),
+         !is.na(spanking),
+         !is.na(social_cons3),
+         !is.na(partyid_3)) |> 
+  mutate(
+    obey2 = recode(obey2, "Less important" = 0, "More important" = 1),
+    spanking = recode(spanking, "STRONGLY DISAGREE" = 0, "DISAGREE" = 1, "AGREE" = 2, "STRONGLY AGREE" = 3),
+    social_cons3 = recode(social_cons3, "Liberal" = 0, "Mod" = 1, "Conserv" = 2)
+  )
+
+
+# Convert variables to unordered factors
+gss_df$partyid_3 <- factor(gss_df$partyid_3, ordered = FALSE)
+
+# Relevel obey2 to set "Less important" as the reference category
+gss_df$partyid_3 <- relevel(gss_df$partyid_3, ref = "Ind")
+
+#quickly review data
+tibble(gss_df)
+
+multi_model <- lm(authoritarianism ~ obey2 + spanking + social_cons3 + partyid_3, data = gss_df)
+
+#quick summry
+summary(multi_model)
+
+#professionally format table
+modelsummary(multi_model, stars = FALSE,
+             coef_rename = c("obey2" = "Obedience is more important",
+                             "spanking" = "Approval of spanking",
+                             "social_cons3" = "Conservatism",
+                             "partyid_3Rep" = "Republican",
+                             "partyid_3Dem" = "Democrat"
+             ),
+                             statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
+```
+
+Surely the most intriguing finding of this regression would be the *extremely significant* relationship between `obey2` and `authoritarianism`. The data suggests that respondents who found obedience to be more important in a child's upbrining were associated with higher scores on the authoritarianism scale. Holding all else equal, respondents who answered "more important" scored 2.58 points higher on average compared to respondents who answered "less important." Considering the scale ranges from 1-6, this marked increase provides substantial support for my hypothesis.
+
+According to the regression, the relationship between spanking and authoritarianism is statistically insignificant. This may be explained by the fact that some parents may approve of spanking as a punishment of last resort. Answers which indicate frequency of punishment may be a stronger indicator of this relationship. Furthermore, parents may engage in this act not as a way to instill obedience but rather to establish boundaries. To compare on the scope of regimes, both authoritarian and democratic systems enforce and maintain laws through coercive means. Perhaps more important to this analysis is not the *means* of punishment, but rather *intent*. 
+
+Interestingly, party identification appeared to have a statistically insignificant relationship with authoritarianism as well. This could partially because of the broad demographics captured by these groupings. While they may signal certain ideological and policy preferences, they cannot be clearly associated with an individual's preference for authoritarian leadership. This favors my hypothesis in that party identification is not a significant driver in this relationship.
+
+However, the relationship between social conservatism and authoritarianism *is* statistically significant (p = 0.038). A coefficient of 0.14 suggests that social conservatism has a small effect on authoritarianism score. This indicates that as respondents become more conservative (within the liberal, moderate, and conservative scale), their average authoritarianism score increases by 0.14 more points, holding all else equal. While not substantial, these results suggest that social conservatism holds some explanatory value in this relationship. Perhaps this is becaue punitive parenting is associated with social conservatism to some extent. 
+
+Taken altogether, this regression provides some strong evidence in support of my hypothesis. The substantial and significant relationship between obedience in children holds considerable explanatory value. Spanking, however, produced statistically insignificant results. The regression showed a significant relationship between social conservatism and authoritarianism, suggesting that this variable could be an additional driver to the relationship. As previously discussed, this could be in part to punitive parenting as part of social conservatism. However, the second control variable, party identification, played no significant part in explaining this relationship. 
