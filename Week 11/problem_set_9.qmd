@@ -128,7 +128,10 @@ I will use the `gss` dataset for this design. I operationalize my independent va
 
 I use social conservatism (`social_cons3`) and party identification (`party_id3`) as my control variables. I choose these two because they are encompassing and holistic political ideologies rather than familial and private practices of power. In this way, we can evaluate how personal behaviors may translate into political beliefs in isolation.
 
-Finally, my dependent variable will be score on the authoritarianism scale (`authoritarianism`). ::: callout-note As a side note, I could not find how "authoritarianism" variable was operationalized. None of the GSS codebooks I found mentioned an authoritarianism variable despite it being available here. I assumed the values "0", "8", and "9" were assigned to "N/A", "Refused", and "Don't know" respectively because most of the other scale variables were organized in the same way. I also assume that the higher value on this scale, the *more* authoritarian. I could be wrong but my analysis will proceed under this assumption. :::
+Finally, my dependent variable will be score on the authoritarianism scale (`authoritarianism`). 
+::: callout-note 
+As a side note, I could not find how "authoritarianism" variable was operationalized. None of the GSS codebooks I found mentioned an authoritarianism variable despite it being available here. I assumed the values "0", "8", and "9" were assigned to "N/A", "Refused", and "Don't know" respectively because most of the other scale variables were organized in the same way. I also assume that the higher value on this scale, the *more* authoritarian. I could be wrong but my analysis will proceed under this assumption. 
+:::
 
 ```{r}
 # Organize dataset
@@ -183,7 +186,7 @@ Interestingly, party identification appeared to have a statistically insignifica
 
 However, the relationship between social conservatism and authoritarianism *is* statistically significant (p = 0.038). A coefficient of 0.14 suggests that social conservatism has a small effect on authoritarianism score. This indicates that as respondents become more conservative (within the liberal, moderate, and conservative scale), their average authoritarianism score increases by 0.14 more points, holding all else equal. While not substantial, these results suggest that social conservatism holds some explanatory value in this relationship. Perhaps this is becaue punitive parenting is associated with social conservatism to some extent.
 
-Taken altogether, this regression provides some strong evidence in support of my hypothesis. The substantial and significant relationship between obedience in children holds considerable explanatory value. Spanking, however, produced statistically insignificant results. The regression showed a significant relationship between social conservatism and authoritarianism, suggesting that this variable could be an additional driver to the relationship. As previously discussed, this could be in part to punitive parenting as part of social conservatism. However, the second control variable, party identification, played no significant part in explaining this relationship.
+Taken altogether, this regression provides some strong evidence in support of my hypothesis. The substantial and significant relationship between obedience in children holds considerable explanatory value. Spanking, however, produced statistically insignificant results. The regression showed a significant relationship between social conservatism and authoritarianism, suggesting that this variable could be an additional driver to the relationship. As previously discussed, this could be in part due to punitive parenting being a part of social conservatism. However, the second control variable, party identification, played no significant part in explaining this relationship.
 
 ::: callout-note
 This is a great answer. Well done.
