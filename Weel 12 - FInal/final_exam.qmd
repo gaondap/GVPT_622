@@ -198,6 +198,7 @@ library(scales)
 library(modelsummary)
 library(broom)
 library(here)
+library(marginaleffects)
 
 #import data
 world_df <- read.csv(
@@ -229,7 +230,6 @@ modelsummary(model_01a,
                              "spendeduc" = "Public Expenditures on Education (% of GDP)"
              ),
                              statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
-
 ```
 
 On average, holding all else constant, every one-point increase in education spending as a percentage of GDP is associated with a 1.7-point increase in literacy rate. However, this is only significant at the .10 level as its p-value (p = 0.051) is just outside of the .05 range.
@@ -277,13 +277,27 @@ modelsummary(model_01c,
              coef_rename = c("literacy" = "Literacy Rate",
                              "spendeduc" = "Public Expenditures on Education (% of GDP)",
                              "dem_score14" = "Level of Democratization",
-                             "gdp_10_tho" = "GDP Per Capita (in tens of thousands)",
+                             "gdp_10_thou" = "GDP Per Capita (in tens of thousands)",
                              "educ_quality" = "Quality of Education",
                              "ungr9095" = "Annual Population Growth (in % of total population)"
              ),
                              statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
+#plot data
+plot_predictions(model_01c, condition = "dem_score14") +
+  labs(title = "Expected Change in Literacy as a Function of Democratization",
+       x = "Democracy Rating",
+       y = "Predicted literacy rate") +
+  theme_minimal()
 ```
+On average, a one point increase in education expenditure is associated with a 0.11 increase in literacy rate, holding all else equal. However, consistent with previous analysis, education expenditure does not have a significant relationship with literacy rate when controlling for democratization, GDP per capita, education quality, and population growth. 
 
+Democratization maintains its significant relationship to literacy rate at the .01 level (p < 0.01). . It does have a lower coefficient, suggesting that it does not hold as much explanatory power. On average, and holding all else equal, a one-point increase in democracy score is associated with a 2.55-point increase in literacy rate. Simply put, democracies tend to have higher literacy rates. 
+
+On average, holding all else equal, a one point increaes in GDP per capita and literacy rate is associated with a 2.36 point increase in literacy rate. However, this is not a statistically significant relationship. 
+
+Education quality rating and literacy rate have a significant relationship only at the .10 level (p = 0.087). On average, a one-point increase in education quality rating is associated with a 3.81 point increase in literacy rate, holding all else equal. This suggests a pontential relationship between countries with higher education quality ratings and literacy rate.
+
+The relationship between population growth and literacy rate is extremely significant (p < 0.001). Unlike previous variables, this relationship is negative. On average, a one-point increase in population growth rate is associated with a 3.33 point decrease in literacy rate. This means that growing countries tend to have lower literacy rates. 
 
 ### Question 2
 
@@ -291,11 +305,43 @@ modelsummary(model_01c,
 
 Using the `states` dataset, use R to regress the variable `obama08` (the percentage of a state's vote that President Obama received in the 2008 U.S. presidential election) on the following independent variables: `cig_tax` represents the amount of a state's cigarette tax (in dollars); `college` is the percentage of a state's population that graduated college (0 to 100); `union07` is the percentage of a state's workers that are union members (0 to 100); and `south` is a dichotomous variable coded as `1` if the state is located in the South (`0` otherwise). Report the results in a professionally formatted table. Answer the following questions.
 
+```{r}
+#import data
+states_df <- read.csv(
+  here("states.csv")) |> 
+  select(obama08, cig_tax, college, union07,south) 
+
+#create multivariate model
+model_02 <- lm(obama08 ~ cig_tax + college + union07 + south, data = states_df)
+
+#review data
+summary(model_02)
+
+#format table
+modelsummary(model_02,
+             coef_rename = c(
+             "obama08" = "Percent of State's Vote for Obama in 2008",
+             "college" = "Percentage of State Population that Graduated College",
+             "cig_tax" = "Amount of a State's Cigarette Tax (in USD)",
+             "union07" = "Percentage of State's Workers that are Union Members",
+             "south" = "Southern State"),
+             statistic = c("t = {statistic}", "SE = {std.error}", "conf.int"))
+```
+
 #### Part A
 
 *Points: 6*
 
 Interpret the substantive results from this regression model. Be sure to discuss the direction, magnitude, and statistical significance of each slope coefficient. Does the `union07` variable exhibit a substantively significant impact on voting behavior in the 2008 election?
+
+**Answer**:
+There is a statistically insignificant relationship between amount of state cigarette tax and a state's percentage of votes fro Obama in 2008. Nonetheless, the regression returns that holding all else equal, the amount of a state's cigarette tax is associated with a 0.52 increase in percentage of state's votes going to Obama in 2008, on  average.
+
+A one point increase in percentage of state population graduating college is associated with a 0.97 point increase in percentage of state's vote going to Obama in 2008, on average and holding all else equal. This positive relationship is extremely significant (p < 0.001).
+
+A one point increase in percentage of state's workers that are union members is associated with a 0.75 point increase in percentage of state's vote going to Obama in 2008, on average and holding all else equal. This positive relationship exhbits a extremely significant substantive impact (p < 0.01).
+
+Southern states are associated with a 1.39 point increase in percentage of state's vote going to Obama 2008, on average holding all else equal. This positive relationship is not statistically signicant (p = 0.59).
 
 #### Part B
 
@@ -303,11 +349,34 @@ Interpret the substantive results from this regression model. Be sure to discuss
 
 Interpret the intercept coefficient. What does this represent and is it meaningful to interpret this coefficient on its own? Why or why not?
 
+**Answer**:
+The interept represents the value of percentage of state's votes for Obama in 2008 when all independent variables' values are at zero. Interpreted substantively, states with no cigarette tax, no college graduates, and no unionized workers are expected to have a mean 16.13% turnout for Obama in 2008. This is not substantively meaningful since it is unrealistic for a state to exhibit all of these qualities.
+
 #### Part C
 
 *Points: 2*
 
 What is the expected mean percentage of Obama's vote total in a Southern state with a cigarette tax of \$2.00, a state population where 30% of people are college graduates, and where 15% of workers in a state are union members?
+
+**Answer**:
+From the regression we can derive this equation:
+
+$$
+\text{Obama08} = \text{Intercept} + (\beta_{\text{cig\_tax}} \times \text{cig\_tax}) + (\beta_{\text{college}} \times \text{college}) + (\beta_{\text{union07}} \times \text{union07}) + (\beta_{\text{south}} \times \text{south})
+$$
+We can substitute these variables into the equation.
+```{r}
+beta_cig_tax <- 0.5230
+beta_college <- 0.9646
+beta_union07 <- 0.7514
+beta_south <- 1.3928
+model02_intercept <- 16.1280
+
+q02c_obama08 <- model02_intercept + (beta_cig_tax * 2) + (beta_college * .30) + (beta_union07 * .15) + (beta_south * 1)
+q02c_obama08
+```
+
+The expected mean percentage of Obama's vote total in this theoretical Southern state is `r q02c_obama08`.
 
 #### Part D
 
@@ -315,8 +384,36 @@ What is the expected mean percentage of Obama's vote total in a Southern state w
 
 What is a 90% confidence interval around the coefficient for the `south` variable.
 
+**Answer**:
+We can calculate this confidence interval using the following equation:
+$$
+CI_{\beta_j} = \beta_j \pm t \cdot SE_{\beta_j}
+$$
+
+```{r}
+#given variable
+SE_south <- 2.588
+df_02 <- model_02$df.residual
+
+#find t-value
+t_south <- qt(0.95, df = df_02)
+
+#Find confidence interval
+upper_south <- beta_south + (t_south * SE_south)
+lower_south <- beta_south - (t_south * SE_south)
+```
+
+A 90% confidence interval around the coefficient for the `south` variable is [`r lower_south`,`r upper_south`].
+
 #### Part E
 
 *Points: 3*
 
 What is the null hypothesis that the F-test in this regression output is testing?
+
+**Answer**:
+The null hypothesis is:
+$$
+H_0: \beta_{\text{cig\_tax}} = \beta_{\text{college}} = \beta_{\text{union07}} = \beta_{\text{south}} = 0
+$$
+In other words, the independent variables `cig_tax`, `college`, `union07`, and `south` do not explain any variation in state turnout for Obama in 2008.
